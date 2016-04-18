@@ -6,5 +6,5 @@ package com.stream.wangxiang.application;
  */
 public class Config {
     // Bmob的appId:
-    public final String BMOB_APP_ID = "0b8ecab9676d5a1c5359c628ac58f548";
+    public static final String BMOB_APP_ID = "0b8ecab9676d5a1c5359c628ac58f548";
 }
