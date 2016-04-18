@@ -6,6 +6,8 @@ import android.content.Context;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.stream.wangxiang.utils.AppUtils;
 
+import cn.bmob.v3.Bmob;
+
 /**
  * 万象app的application
  * Created by 张川川 on 2016/4/17.
@@ -25,6 +27,8 @@ public class WanxiangApplication extends Application {
     }
 
     private void initPlatform() {
-        Fresco.initialize(this);
+        Context context = getApplicationContext();
+        Fresco.initialize(context);
+        Bmob.initialize(context, Config.BMOB_APP_ID);
     }
 }
