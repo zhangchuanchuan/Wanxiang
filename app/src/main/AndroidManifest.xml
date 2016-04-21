@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.stream.wangxiang.activity.MainActivity"/>
+
     </application>
 
 </manifest>
