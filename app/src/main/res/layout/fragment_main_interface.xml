@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:id="@+id/main_tab_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/main_tab_bg"
         android:gravity="bottom"
         android:layout_alignParentBottom="true">
 
@@ -38,26 +40,11 @@
                 android:src="@drawable/category_normal"/>
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.v4.widget.Space
+            android:id="@+id/subscribe_space"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="2">
-            <ImageView
-                android:id="@+id/icon_subscribe"
-                android:layout_width="@dimen/main_subscribe_size"
-                android:layout_height="@dimen/main_subscribe_size"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/subscribe_icon"/>
-            <TextView
-                android:layout_marginBottom="@dimen/main_tab_black"
-                android:layout_marginTop="@dimen/main_tab_black"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="@string/home_subscribe"/>
-        </LinearLayout>
+            android:layout_weight="2"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -89,6 +76,27 @@
                 android:paddingRight="@dimen/main_tab_padding"
                 android:src="@drawable/my_icon_normal"/>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/main_tab_bar"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/icon_subscribe"
+            android:layout_width="@dimen/main_subscribe_size"
+            android:layout_height="@dimen/main_subscribe_size"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/subscribe_icon"/>
+        <TextView
+            android:layout_marginBottom="@dimen/main_tab_black"
+            android:layout_marginTop="@dimen/main_tab_black"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_subscribe"/>
     </LinearLayout>
 
 </RelativeLayout>

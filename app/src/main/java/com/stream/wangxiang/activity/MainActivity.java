@@ -3,6 +3,7 @@ package com.stream.wangxiang.activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.stream.wangxiang.fragment.HomeFragment;
 import com.stream.wangxiang.fragment.MainInterfaceFragment;
 
 /**
@@ -18,6 +19,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         if(savedInstanceState == null){
             MainInterfaceFragment mainInterfaceFragment = new MainInterfaceFragment();
+            HomeFragment homeFragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction().add(android.R.id.content, homeFragment).commit();
             getSupportFragmentManager().beginTransaction().add(android.R.id.content, mainInterfaceFragment).commit();
         }
     }

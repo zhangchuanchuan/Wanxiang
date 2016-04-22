@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--head bar-->
+    <RelativeLayout
+        android:background="@color/wanxiang_color"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_bar_height">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/head_logo_margin_left"
+            style="@style/text_logo"
+            android:text="@string/app_name"/>
+        <TextView
+            android:id="@+id/today_hot_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/head_logo_margin_left"
+            android:text="@string/today_hot"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

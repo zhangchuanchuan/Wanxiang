@@ -4,4 +4,7 @@
     <dimen name="main_tab_black">5dp</dimen>
     <dimen name="main_tab_padding">20dp</dimen>
     <dimen name="main_subscribe_size">50dp</dimen>
+
+    <dimen name="head_bar_height">45dp</dimen>
+    <dimen name="head_logo_margin_left">15dp</dimen>
 </resources>
