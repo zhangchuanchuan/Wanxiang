@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--首页相关距离-->
-    <dimen name="main_tab_black">5dp</dimen>
+    <dimen name="main_tab_black">3dp</dimen>
     <dimen name="main_tab_padding">20dp</dimen>
-    <dimen name="main_subscribe_size">50dp</dimen>
+    <dimen name="main_subscribe_size">48dp</dimen>
 
     <dimen name="head_bar_height">45dp</dimen>
     <dimen name="head_logo_margin_left">15dp</dimen>

@@ -31,5 +31,9 @@ public class Config {
     public static String URL_20_END = "/0-20.html";
     public static String URL_10_END = "/0-10.html";
 
+    // 天气接口
+    public static final String SEARCH_WEATHER_URL = "http://wthrcdn.etouch.cn/weather_mini?city=";
+    public static final String CITY_LIST_URL = "http://m.163.com/special/newsclient/cities.html";
+
 
 }

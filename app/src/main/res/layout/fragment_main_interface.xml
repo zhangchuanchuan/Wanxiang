@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/main_subscribe_size"
             android:orientation="vertical"
             android:layout_weight="2">
             <ImageView
@@ -27,7 +27,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/main_subscribe_size"
             android:orientation="vertical"
             android:layout_weight="2">
             <ImageView
@@ -48,7 +48,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/main_subscribe_size"
             android:orientation="vertical"
             android:layout_weight="2">
             <ImageView
@@ -64,7 +64,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/main_subscribe_size"
             android:orientation="vertical"
             android:layout_weight="2">
             <ImageView
