@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">万象新闻</string>
+
+    <!--首页-->
+    <string name="home_page">首页</string>
+    <string name="home_category">分类</string>
+    <string name="home_subscribe">订阅</string>
+    <string name="home_local">本地</string>
+    <string name="home_myself">个人</string>
 </resources>

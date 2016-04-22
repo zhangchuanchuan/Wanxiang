@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
-        android:baselineAligned="false">
+        android:layout_alignParentBottom="true">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -14,86 +14,76 @@
             android:orientation="vertical"
             android:layout_weight="2">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/home_icon_normal"/>
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:text="首页"/>
+                android:paddingLeft="@dimen/main_tab_padding"
+                android:paddingRight="@dimen/main_tab_padding"
+                android:src="@drawable/home_icon_normal"/>
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="2">
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/category_normal"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="分类"/>
+            android:orientation="vertical"
+            android:layout_weight="2">
+            <ImageView
+                android:layout_width="match_parent"
+                android:paddingLeft="@dimen/main_tab_padding"
+                android:paddingRight="@dimen/main_tab_padding"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/category_normal"/>
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="2">
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/subscribe_icon"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="订阅"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_weight="2">
+            <ImageView
+                android:layout_width="@dimen/main_subscribe_size"
+                android:layout_height="@dimen/main_subscribe_size"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/subscribe_icon"/>
+            <TextView
+                android:layout_marginBottom="@dimen/main_tab_black"
+                android:layout_marginTop="@dimen/main_tab_black"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="2">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/message_icon_normal"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+                android:text="@string/home_subscribe"/>
+        </LinearLayout>
 
-            android:text="本地"/>
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="2">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="@dimen/main_tab_padding"
+                android:paddingRight="@dimen/main_tab_padding"
+                android:src="@drawable/home_location_normal"/>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="2">
-        <ImageView
-            android:layout_width="wrap_content"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/my_icon_normal"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="个人"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_weight="2">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="@dimen/main_tab_padding"
+                android:paddingRight="@dimen/main_tab_padding"
+                android:src="@drawable/my_icon_normal"/>
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
