@@ -27,7 +27,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        mNewsList = (ListView) view.findViewById(R.id.news_list);
 
         return view;
     }
