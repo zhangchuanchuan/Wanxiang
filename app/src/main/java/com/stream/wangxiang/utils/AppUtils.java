@@ -2,6 +2,7 @@ package com.stream.wangxiang.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.widget.Toast;
 
 /**
  * 全局工具类，用于获取资源文件
@@ -34,6 +35,10 @@ public class AppUtils {
 
     public static float getDimension(int id) {
         return context.getResources().getDimension(id);
+    }
+
+    public static void showShortToast(String msg){
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT);
     }
 
 

@@ -5,11 +5,16 @@ package com.stream.wangxiang.application;
  * Created by 张川川 on 2016/4/18.
  */
 public class Config {
+
+    // 是否调试模式
+    public static final boolean DEBUG = true;
+
     // Bmob的appId:
     public static final String BMOB_APP_ID = "0b8ecab9676d5a1c5359c628ac58f548";
 
     // 首页的接口地址
     public static final String HOME_HEADLINE_URL = "http://c.m.163.com/nc/article/headline/T1348647909107/0-20.html";
+    public static final String HOME_ID = "T1348647909107";
 
     // 获取分类的接口
     public static final String CATEGORY_LIST_URL = "http://c.m.163.com/nc/topicset/android/subscribe/manage/listspecial.html";
