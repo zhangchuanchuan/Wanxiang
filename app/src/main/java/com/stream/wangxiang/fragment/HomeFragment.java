@@ -10,6 +10,7 @@ import android.widget.SimpleAdapter;
 
 import com.stream.wangxiang.application.Config;
 import com.stream.wangxiang.net.GetNewsList;
+import com.stream.wangxiang.net.GetWeatherInfo;
 import com.stream.wanxiang.R;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        GetNewsList.getHomeNewsList();
+        GetWeatherInfo.getCityList();
         return view;
     }
 
