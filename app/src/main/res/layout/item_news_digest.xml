@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
+    <data>
+        <variable
+            name="news_item"
+            type="com.stream.wangxiang.vo.NewsItem"/>
+    </data>
     <LinearLayout
         android:id="@+id/news_item_layout"
         android:paddingTop="@dimen/item_margin_top"
@@ -14,6 +18,7 @@
             android:id="@+id/news_item_img"
             android:layout_marginLeft="@dimen/img_margin_left"
             android:layout_marginRight="@dimen/img_margin_right"
+            android:src="@{news_item.imgsrc != null ? news_item.imgsrc}"
             android:layout_width="106dp"
             android:layout_height="78dp"/>
         <RelativeLayout
@@ -28,7 +33,7 @@
                 android:maxLines="1"
                 android:textSize="16dp"
                 android:textColor="@color/black"
-                android:text="习近平:扶贫机制要进一步完善"/>
+                android:text="@{news_item.title}"/>
             <TextView
                 android:id="@+id/news_item_digest"
                 android:layout_below="@id/news_item_title"
@@ -36,14 +41,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="@dimen/digest_text_line_space"
-                android:text="扶贫要完善都低措施，在医保、心农舍方面给予更多支持。"/>
+                android:text="@{news_item.digest}"/>
             <TextView
                 android:id="@+id/news_item_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:text="新闻源"/>
+                android:text="@{news_item.source}"/>
         </RelativeLayout>
     </LinearLayout>
 
@@ -54,4 +59,4 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"/>
 
-</LinearLayout>
+</layout>
