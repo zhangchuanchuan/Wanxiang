@@ -42,6 +42,8 @@ public class NewsItem {
     private String imgsrc;
     private String ptime;
 
+    private String defaultImgUrl = "http://stacdn201.ganjistatic1.com/src/image/house/noimg.gif";
+
     public String getPostid() {
         return postid;
     }
@@ -192,5 +194,9 @@ public class NewsItem {
 
     public void setPtime(String ptime) {
         this.ptime = ptime;
+    }
+
+    public String getDefaultImgUrl(){
+        return defaultImgUrl;
     }
 }
