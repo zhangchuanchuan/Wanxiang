@@ -29,7 +29,7 @@
 
     <!--下拉刷新控件-->
     <in.srain.cube.views.ptr.PtrClassicFrameLayout
-        android:id="@+id/pull_to_refresh_news_list"
+        android:id="@+id/home_ptr"
         android:layout_marginTop="@dimen/head_bar_height"
         xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -41,10 +41,19 @@
         cube_ptr:ptr_pull_to_fresh="false"
         cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
         cube_ptr:ptr_resistance="1.7">
-        <ListView
+        <com.stream.wangxiang.view.LoadMoreListView
             android:id="@+id/news_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+    <TextView
+        android:layout_below="@id/home_ptr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/main_subscribe_size"
+        android:paddingBottom="@dimen/main_subscribe_size"
+        android:text="加载更多..."/>
 
 </RelativeLayout>

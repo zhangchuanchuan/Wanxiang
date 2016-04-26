@@ -13,7 +13,7 @@ public class Config {
     public static final String BMOB_APP_ID = "0b8ecab9676d5a1c5359c628ac58f548";
 
     // 首页的接口地址
-    public static final String HOME_HEADLINE_URL = "http://c.m.163.com/nc/article/headline/T1348647909107/0-20.html";
+    public static final String HOME_HEADLINE_URL_START = "http://c.m.163.com/nc/article/headline/T1348647909107/";
     public static final String HOME_ID = "T1348647909107";
 
     // 获取分类的接口
@@ -35,6 +35,7 @@ public class Config {
     public static final String NEWS_DETAIL_EDN = "/full.html";
     public static String URL_20_END = "/0-20.html";
     public static String URL_10_END = "/0-10.html";
+    public static String URL_END = "-20.html";
 
     // 天气接口
     public static final String SEARCH_WEATHER_URL = "http://wthrcdn.etouch.cn/weather_mini?city=";

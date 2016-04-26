@@ -1,7 +1,11 @@
 package com.stream.wangxiang.utils;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 /**
@@ -39,6 +43,10 @@ public class AppUtils {
 
     public static void showShortToast(String msg){
         Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+    }
+
+    public static View getView(int resourceId){
+        return LayoutInflater.from(context).inflate(resourceId, null);
     }
 
 

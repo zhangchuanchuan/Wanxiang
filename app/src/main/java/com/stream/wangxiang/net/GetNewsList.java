@@ -28,8 +28,13 @@ import de.greenrobot.event.EventBus;
  */
 public class GetNewsList {
 
-    public static void getHomeNewsList(){
-        String url = Config.HOME_HEADLINE_URL;
+    /**
+     * 获取新闻列表， 最新为0,加载更多为其他
+     * @param count 0，20 ，40...
+     */
+    public static void getHomeNewsList(int count){
+        String url = Config.HOME_HEADLINE_URL_START + count+Config.URL_END;
+
         Request<JSONObject> request = NoHttp.createJsonObjectRequest(url);
         RequestQueue queue = NoHttp.newRequestQueue();
         queue.add(RequestWhat.GET_NEWS_LIST, request, new WxOnResponseListener<JSONObject>(){
@@ -58,6 +63,9 @@ public class GetNewsList {
         });
 
     }
+
+
+
 
     public static void getCategoryNewList(final String categoryId){
         String start = Config.CATEGORY_URL_START;

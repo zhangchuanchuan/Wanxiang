@@ -2,9 +2,11 @@ package com.stream.wangxiang.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -13,6 +15,8 @@ import com.stream.wangxiang.application.Config;
 import com.stream.wangxiang.event.RefreshNewsListEvent;
 import com.stream.wangxiang.net.GetNewsList;
 import com.stream.wangxiang.net.GetWeatherInfo;
+import com.stream.wangxiang.utils.AppUtils;
+import com.stream.wangxiang.view.LoadMoreListView;
 import com.stream.wangxiang.vo.NewsItem;
 import com.stream.wanxiang.R;
 
@@ -22,6 +26,10 @@ import java.util.List;
 import java.util.Map;
 
 import de.greenrobot.event.EventBus;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 
 /**
  * 首页的fragment
@@ -29,20 +37,60 @@ import de.greenrobot.event.EventBus;
  */
 public class HomeFragment extends BaseFragment {
 
-    private ListView mNewsList;
+    private LoadMoreListView mNewsList;
+    private PtrClassicFrameLayout mHomePtr;
+    private List<NewsItem> list;
+    private NewsItemAdapter adapter;
+
+    private int page = 0;
+
+    private final int REFRESH_CODE = 0;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        mNewsList = (ListView)view.findViewById(R.id.news_list);
-        GetNewsList.getHomeNewsList();
+        mNewsList = (LoadMoreListView)view.findViewById(R.id.news_list);
+        mNewsList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(visibleItemCount != 0) {
+                    // 代表拉到最低了， 加载更多
+                    if(firstVisibleItem == totalItemCount - visibleItemCount){
+                        if(mNewsList.isFooterIsShow()){
+                            return;
+                        }
+                        Log.d("zcc", "加载更多..."+page+", "+firstVisibleItem+", "+visibleItemCount+", "+totalItemCount);
+                        mNewsList.setFooterShow();
+                        page++;
+                        GetNewsList.getHomeNewsList(page*20);
+                    }
+                }
+            }
+        });
+        mHomePtr = (PtrClassicFrameLayout) view.findViewById(R.id.home_ptr);
+
+        mHomePtr.setPtrHandler(new PtrDefaultHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                GetNewsList.getHomeNewsList(REFRESH_CODE);
+            }
+        });
+        list = new ArrayList<>();
+        adapter = new NewsItemAdapter(getContext(), R.layout.item_news_digest, list);
+        mNewsList.setAdapter(adapter);
+        GetNewsList.getHomeNewsList(REFRESH_CODE);
+        setOnBusy(true);
         return view;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
     }
 
@@ -53,14 +101,27 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void onEventMainThread(RefreshNewsListEvent event){
+        setOnBusy(false);
+        if(mHomePtr.isRefreshing()){
+            mHomePtr.refreshComplete();
+        }
+
+        if(mNewsList.isFooterIsShow()){
+            mNewsList.setFooterGone();
+        }
+
         if(event == null){
             return;
         }
-        List<NewsItem> list = event.getNewsItemList();
-        if(list != null){
-            NewsItemAdapter adapter = new NewsItemAdapter(getContext(), R.layout.item_news_digest, list);
-            mNewsList.setAdapter(adapter);
+
+        if(event.getNewsItemList() != null){
+            for(NewsItem item : event.getNewsItemList()){
+                list.add(item);
+            }
         }
+
+        adapter.notifyDataSetChanged();
+
 
     }
 
