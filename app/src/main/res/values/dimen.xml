@@ -19,5 +19,6 @@
 
     <!--新闻详情-->
     <dimen name="detail_bar_height">45dp</dimen>
+    <dimen name="arrow_height">20dp</dimen>
 
 </resources>

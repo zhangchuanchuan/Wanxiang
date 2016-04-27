@@ -11,6 +11,9 @@
     <color name="light_gray_bg_color">#F8F8F8</color>
     <!--浅灰色背景-->
 
+    <!--分割线灰色-->
+    <color name="divider_gray">#D2D2D2</color>
+
 
     <color name="wanxiang_color">#FF472E</color>
     <!--主题颜色-->

@@ -18,7 +18,7 @@ public class NewsDetailActivity extends BaseActivity{
         String postId = getIntent().getStringExtra(KEY_FOR_POST_ID);
         if(postId != null){
             NewsDetailFragment mFragment = NewsDetailFragment.newInstance(postId);
-            getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment);
+            getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment).commit();
         }else{
             finish();
         }
