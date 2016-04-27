@@ -16,6 +16,7 @@ import com.stream.wangxiang.event.RefreshNewsListEvent;
 import com.stream.wangxiang.net.GetNewsList;
 import com.stream.wangxiang.net.GetWeatherInfo;
 import com.stream.wangxiang.utils.AppUtils;
+import com.stream.wangxiang.utils.StringUtils;
 import com.stream.wangxiang.view.LoadMoreListView;
 import com.stream.wangxiang.vo.NewsItem;
 import com.stream.wanxiang.R;
@@ -103,6 +104,7 @@ public class HomeFragment extends BaseFragment {
     public void onEventMainThread(RefreshNewsListEvent event){
         setOnBusy(false);
         if(mHomePtr.isRefreshing()){
+            list.clear();
             mHomePtr.refreshComplete();
         }
 
@@ -115,8 +117,10 @@ public class HomeFragment extends BaseFragment {
         }
 
         if(event.getNewsItemList() != null){
-            for(NewsItem item : event.getNewsItemList()){
-                list.add(item);
+            for(NewsItem item : event.getNewsItemList()) {
+                if (!StringUtils.isNullOrEmpty(item.getLtitle())) {
+                    list.add(item);
+                }
             }
         }
 
