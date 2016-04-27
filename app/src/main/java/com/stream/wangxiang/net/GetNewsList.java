@@ -100,5 +100,10 @@ public class GetNewsList {
         });
     }
 
+    public static void getNewsDetail(String postId){
+        String url = Config.getNewsDetailUrl(postId);
+
+    }
+
 
 }

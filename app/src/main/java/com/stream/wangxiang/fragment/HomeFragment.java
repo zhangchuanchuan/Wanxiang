@@ -1,5 +1,6 @@
 package com.stream.wangxiang.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -7,30 +8,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.AdapterView;
 
+import com.stream.wangxiang.activity.NewsDetailActivity;
 import com.stream.wangxiang.adapter.NewsItemAdapter;
-import com.stream.wangxiang.application.Config;
 import com.stream.wangxiang.event.RefreshNewsListEvent;
 import com.stream.wangxiang.net.GetNewsList;
-import com.stream.wangxiang.net.GetWeatherInfo;
-import com.stream.wangxiang.utils.AppUtils;
 import com.stream.wangxiang.utils.StringUtils;
 import com.stream.wangxiang.view.LoadMoreListView;
 import com.stream.wangxiang.vo.NewsItem;
 import com.stream.wanxiang.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
 
 /**
  * 首页的fragment
@@ -73,6 +68,24 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         });
+
+        mNewsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(list == null){
+                    return;
+                }
+                String postId = list.get(position).getPostid();
+                if(StringUtils.isNullOrEmpty(postId)){
+                    return;
+                }
+                Intent intent = new Intent();
+                intent.putExtra(NewsDetailActivity.KEY_FOR_POST_ID, postId);
+                intent.setClass(getContext(), NewsDetailActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
         mHomePtr = (PtrClassicFrameLayout) view.findViewById(R.id.home_ptr);
 
         mHomePtr.setPtrHandler(new PtrDefaultHandler() {
@@ -100,6 +113,7 @@ public class HomeFragment extends BaseFragment {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
 
     public void onEventMainThread(RefreshNewsListEvent event){
         setOnBusy(false);

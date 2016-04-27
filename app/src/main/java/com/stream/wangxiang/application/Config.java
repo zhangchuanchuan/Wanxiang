@@ -41,5 +41,9 @@ public class Config {
     public static final String SEARCH_WEATHER_URL = "http://wthrcdn.etouch.cn/weather_mini?city=";
     public static final String CITY_LIST_URL = "http://m.163.com/special/newsclient/cities.html";
 
+    public static String getNewsDetailUrl(String postId){
+        return NEWS_DETAIL_URL+postId+NEWS_DETAIL_EDN;
+    }
+
 
 }

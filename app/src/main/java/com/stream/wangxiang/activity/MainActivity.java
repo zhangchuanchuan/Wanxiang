@@ -29,7 +29,7 @@ public class MainActivity extends BaseActivity {
     public void onBackPressed() {
         long currentTime = System.currentTimeMillis();
         if(currentTime - pressTime < 2000){
-            finish();
+            super.finish(false);
         }else{
             Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
             pressTime = currentTime;

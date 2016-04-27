@@ -26,6 +26,11 @@
 
         <activity android:name="com.stream.wangxiang.activity.MainActivity"/>
 
+        <activity android:name="com.stream.wangxiang.activity.NewsDetailActivity"/>
+
+        <activity android:name="com.stream.wangxiang.activity.HotActivity"/>
+
+
     </application>
 
 </manifest>

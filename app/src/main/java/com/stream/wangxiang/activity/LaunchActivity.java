@@ -46,7 +46,7 @@ public class LaunchActivity extends BaseActivity {
     private void jumpToMainActivity(){
         Intent mainIntent = new Intent();
         mainIntent.setClass(this, MainActivity.class);
-        this.startActivity(mainIntent);
-        finish();
+        super.startActivity(mainIntent, false);
+        super.finish(false);
     }
 }

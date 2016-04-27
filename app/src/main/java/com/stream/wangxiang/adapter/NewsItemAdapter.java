@@ -1,6 +1,7 @@
 package com.stream.wangxiang.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.databinding.tool.Binding;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.stream.wangxiang.activity.NewsDetailActivity;
 import com.stream.wangxiang.vo.NewsItem;
 import com.stream.wanxiang.databinding.ItemNewsDigestBinding;
 
@@ -19,12 +21,14 @@ import java.util.List;
  */
 public class NewsItemAdapter extends BaseAdapter {
 
+    private Context mContext;
     private LayoutInflater mInflater;
     private int mResourceId;
     private List<NewsItem> mDataList;
 
     public NewsItemAdapter(Context context, int resourceId, List<NewsItem> dataList){
         mInflater = LayoutInflater.from(context);
+        mContext = context;
         mResourceId = resourceId;
         mDataList = dataList;
     }
@@ -45,12 +49,11 @@ public class NewsItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             convertView = mInflater.inflate(mResourceId, null);
         }
-        ViewDataBinding binding = DataBindingUtil.bind(convertView);
-        NewsItem item = mDataList.get(position);
+        final NewsItem item = mDataList.get(position);
         ItemNewsDigestBinding itemNewsDigestBinding = DataBindingUtil.bind(convertView);
         itemNewsDigestBinding.setNewItem(item);
         return convertView;
