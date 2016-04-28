@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.stream.wangxiang.event.GetNewsDetailEvent;
 import com.stream.wangxiang.net.GetNewsList;
+import com.stream.wangxiang.utils.StringUtils;
 import com.stream.wangxiang.view.NewsSimpleDraweeView;
 import com.stream.wangxiang.view.NewsTextView;
 import com.stream.wangxiang.vo.NewsDetailVo;
@@ -97,10 +99,12 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
      */
     private void setNewsDetail(NewsDetailVo vo) {
         mNewsTitle.setText(vo.getTitle());
+        List<NewsImg> imgList = vo.getImg();
 
         String body = vo.getBody();
+        StringUtils.parseBodyString(body);
+
         String[] strs = body.split("<p>");
-        List<NewsImg> imgList = vo.getImg();
 
         for(String s : strs){
             if(s.contains("<!--IMG")){
@@ -114,10 +118,6 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
                     mNewsContent.addView(tv);
                 }
             }
-
-
-
-
         }
 
     }

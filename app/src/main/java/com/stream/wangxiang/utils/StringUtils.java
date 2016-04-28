@@ -2,6 +2,14 @@ package com.stream.wangxiang.utils;
 
 import android.util.Log;
 
+import com.stream.wangxiang.vo.NewsComponent;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,4 +51,42 @@ public class StringUtils {
         }
         return list;
     }
+
+    /**
+     *  解析body字符串
+     * @param body 新闻body
+     * @return 分段的list
+     */
+    public static List<NewsComponent> parseBodyString(String body){
+
+        try {
+            XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
+            parser.setInput(new StringReader(body));
+            int eventType = parser.getEventType();
+
+            while(eventType!= XmlPullParser.END_DOCUMENT){
+                String nodeName = parser.getName();
+                if(nodeName != null) {
+                    switch (nodeName) {
+                        default:
+                            Log.d("zcc", nodeName + ", "+parser.nextText());
+                            break;
+                    }
+                }else{
+                    Log.d("zcc", parser.toString());
+                }
+                //下一个结点
+                eventType = parser.next();
+            }
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
+
 }

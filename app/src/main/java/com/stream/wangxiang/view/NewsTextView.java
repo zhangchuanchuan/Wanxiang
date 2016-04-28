@@ -19,7 +19,7 @@ public class NewsTextView extends TextView {
     public NewsTextView(String content){
         super(AppUtils.context);
         this.setTextColor(AppUtils.getColor(R.color.text_more_gray_color));
-        this.setTextSize(16);
+        this.setTextSize(18);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
         params.setMargins(AppUtils.getDimen(R.dimen.content_text_margin_left), AppUtils.getDimen(R.dimen.content_text_margin_top),
                 AppUtils.getDimen(R.dimen.content_text_margin_right), AppUtils.getDimen(R.dimen.content_text_marign_bottom));
