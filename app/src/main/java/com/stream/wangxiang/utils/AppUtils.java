@@ -41,6 +41,10 @@ public class AppUtils {
         return context.getResources().getDimension(id);
     }
 
+    public static int getDimen(int id){
+        return (int)context.getResources().getDimension(id);
+    }
+
     public static void showShortToast(String msg){
         Toast.makeText(context, msg, Toast.LENGTH_SHORT);
     }

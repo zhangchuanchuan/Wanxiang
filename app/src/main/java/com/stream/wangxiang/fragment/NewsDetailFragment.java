@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.stream.wangxiang.event.GetNewsDetailEvent;
 import com.stream.wangxiang.net.GetNewsList;
+import com.stream.wangxiang.view.NewsSimpleDraweeView;
+import com.stream.wangxiang.view.NewsTextView;
 import com.stream.wangxiang.vo.NewsDetailVo;
 import com.stream.wangxiang.vo.NewsImg;
 import com.stream.wanxiang.R;
@@ -102,13 +104,13 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
 
         for(String s : strs){
             if(s.contains("<!--IMG")){
-                SimpleDraweeView sdv = new SimpleDraweeView(getContext());
+                NewsSimpleDraweeView nsdv = new NewsSimpleDraweeView(imgList.get(0));
+                mNewsContent.addView(nsdv);
 
             }else {
                 if(s.length()>4) {
                     s = s.substring(0, s.length() - 4);
-                    TextView tv = new TextView(getContext());
-                    tv.setText(s);
+                    NewsTextView tv = new NewsTextView(s);
                     mNewsContent.addView(tv);
                 }
             }
