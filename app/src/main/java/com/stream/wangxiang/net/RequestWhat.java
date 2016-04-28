@@ -8,6 +8,7 @@ public class RequestWhat {
     // 获取首页新闻列表的what
     public static final int GET_NEWS_LIST = 0;
 
+
     // 获取分类新闻列表的
     public static final int GET_CATEGORY_NEWS_LIST = 1;
 

@@ -5,8 +5,10 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.stream.wangxiang.application.Config;
+import com.stream.wangxiang.event.GetNewsDetailEvent;
 import com.stream.wangxiang.event.RefreshNewsListEvent;
 import com.stream.wangxiang.utils.AppUtils;
+import com.stream.wangxiang.vo.NewsDetailVo;
 import com.stream.wangxiang.vo.NewsItem;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.Request;
@@ -100,8 +102,33 @@ public class GetNewsList {
         });
     }
 
-    public static void getNewsDetail(String postId){
+    public static void getNewsDetail(final String postId){
         String url = Config.getNewsDetailUrl(postId);
+
+        Request<JSONObject> request = NoHttp.createJsonObjectRequest(url);
+        RequestQueue queue = NoHttp.newRequestQueue();
+        queue.add(RequestWhat.GET_NEWS_DETAIL, request, new WxOnResponseListener<JSONObject>(){
+
+            @Override
+            public void onSucceed(int what, Response<JSONObject> response) {
+                Log.d("zcc", response.toString());
+                Log.d("zcc", response.get().toString());
+
+                JSONObject jsonObject  = null;
+                try {
+                    jsonObject = response.get().getJSONObject(postId);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Gson gson = new Gson();
+                NewsDetailVo detailVo = gson.fromJson(jsonObject.toString(), NewsDetailVo.class);
+                GetNewsDetailEvent event = new GetNewsDetailEvent();
+                event.setDetailVo(detailVo);
+                EventBus.getDefault().post(event);
+
+            }
+
+        });
 
     }
 

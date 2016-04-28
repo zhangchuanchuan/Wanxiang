@@ -6,8 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.stream.wangxiang.event.GetNewsDetailEvent;
+import com.stream.wangxiang.net.GetNewsList;
+import com.stream.wangxiang.vo.NewsDetailVo;
 import com.stream.wanxiang.R;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * 新闻详情的fragment
@@ -18,6 +24,20 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
     private String mPostId;
 
     private ImageView mBackImg;
+
+    private TextView mBody;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 
     public static NewsDetailFragment newInstance(String postId) {
         NewsDetailFragment fragment = new NewsDetailFragment();
@@ -31,6 +51,8 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
         View view =  inflater.inflate(R.layout.fragment_news_detail, null);
         mBackImg = (ImageView) view.findViewById(R.id.img_back);
         mBackImg.setOnClickListener(this);
+        mBody = (TextView) view.findViewById(R.id.body);
+        GetNewsList.getNewsDetail(mPostId);
         return view;
     }
 
@@ -42,4 +64,20 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
                 break;
         }
     }
+
+    public void onEventMainThread(GetNewsDetailEvent event){
+        if(event == null){
+            return;
+        }
+
+        NewsDetailVo vo = event.getDetailVo();
+        if(vo == null){
+            return;
+        }
+
+        mBody.setText(vo.getBody());
+
+
+    }
+
 }

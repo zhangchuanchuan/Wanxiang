@@ -75,6 +75,11 @@ public class HomeFragment extends BaseFragment {
                 if(list == null){
                     return;
                 }
+                // 点击的是加载更多
+                if(position == list.size()){
+                    return;
+                }
+
                 String postId = list.get(position).getPostid();
                 if(StringUtils.isNullOrEmpty(postId)){
                     return;

@@ -32,29 +32,34 @@
         android:id="@+id/news_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/body"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/white">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/text_brick_red_color"
-                android:text="相关新闻"/>
-            <ListView
-                android:id="@+id/relation_news_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_height="wrap_content" />
 
-            </ListView>
-        </LinearLayout>
+
+        <!--<LinearLayout-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="12dp"-->
+            <!--android:layout_marginLeft="12dp"-->
+            <!--android:layout_marginRight="12dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:background="@color/white">-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:textColor="@color/text_brick_red_color"-->
+                <!--android:text="相关新闻"/>-->
+            <!--<ListView-->
+                <!--android:id="@+id/relation_news_list"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+            <!--</ListView>-->
+        <!--</LinearLayout>-->
     </ScrollView>
 
 

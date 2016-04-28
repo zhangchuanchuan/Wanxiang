@@ -9,6 +9,7 @@ public class RelationNews {
     private String type;
     private String source;
     private String ptime;
+    private String imgsrc;
     private String href;
 
     public String getId() {

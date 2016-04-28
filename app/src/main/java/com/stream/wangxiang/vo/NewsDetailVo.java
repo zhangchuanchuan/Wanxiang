@@ -29,6 +29,15 @@ public class NewsDetailVo {
 
     //推荐新闻列表
     private List<RelationNews> relative;
+    private List<RelationNews> relative_sys;
+
+    public List<RelationNews> getRelative_sys() {
+        return relative_sys;
+    }
+
+    public void setRelative_sys(List<RelationNews> relative_sys) {
+        this.relative_sys = relative_sys;
+    }
 
     public String getBody() {
         return body;
