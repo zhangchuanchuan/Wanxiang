@@ -6,12 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.stream.wangxiang.event.GetNewsDetailEvent;
 import com.stream.wangxiang.net.GetNewsList;
 import com.stream.wangxiang.vo.NewsDetailVo;
+import com.stream.wangxiang.vo.NewsImg;
 import com.stream.wanxiang.R;
+
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -24,8 +29,8 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
     private String mPostId;
 
     private ImageView mBackImg;
-
-    private TextView mBody;
+    private TextView mNewsTitle;
+    private LinearLayout mNewsContent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +56,9 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
         View view =  inflater.inflate(R.layout.fragment_news_detail, null);
         mBackImg = (ImageView) view.findViewById(R.id.img_back);
         mBackImg.setOnClickListener(this);
-        mBody = (TextView) view.findViewById(R.id.body);
+        mNewsContent = (LinearLayout) view.findViewById(R.id.news_detail_content);
+        mNewsTitle = (TextView) view.findViewById(R.id.news_detail_title);
+        setOnBusy(true);
         GetNewsList.getNewsDetail(mPostId);
         return view;
     }
@@ -66,6 +73,7 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
     }
 
     public void onEventMainThread(GetNewsDetailEvent event){
+        setOnBusy(false);
         if(event == null){
             return;
         }
@@ -75,9 +83,40 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
             return;
         }
 
-        mBody.setText(vo.getBody());
+        setNewsDetail(vo);
+
 
 
     }
 
+    /**
+     *  设置新闻详情的显示
+     * @param vo 新闻详情信息
+     */
+    private void setNewsDetail(NewsDetailVo vo) {
+        mNewsTitle.setText(vo.getTitle());
+
+        String body = vo.getBody();
+        String[] strs = body.split("<p>");
+        List<NewsImg> imgList = vo.getImg();
+
+        for(String s : strs){
+            if(s.contains("<!--IMG")){
+                SimpleDraweeView sdv = new SimpleDraweeView(getContext());
+
+            }else {
+                if(s.length()>4) {
+                    s = s.substring(0, s.length() - 4);
+                    TextView tv = new TextView(getContext());
+                    tv.setText(s);
+                    mNewsContent.addView(tv);
+                }
+            }
+
+
+
+
+        }
+
+    }
 }

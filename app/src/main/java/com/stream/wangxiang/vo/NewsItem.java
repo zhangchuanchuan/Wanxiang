@@ -42,6 +42,16 @@ public class NewsItem {
     private String imgsrc;
     private String ptime;
 
+    private String TAGS;
+
+    public String getTAGS() {
+        return TAGS;
+    }
+
+    public void setTAGS(String TAGS) {
+        this.TAGS = TAGS;
+    }
+
     private String defaultImgUrl = "http://stacdn201.ganjistatic1.com/src/image/house/noimg.gif";
 
     public String getPostid() {

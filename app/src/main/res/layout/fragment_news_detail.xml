@@ -14,13 +14,13 @@
         android:layout_height="@dimen/arrow_height"
         android:src="@drawable/ic_left"/>
         <TextView
+            android:id="@+id/news_detail_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textSize="16dp"
             android:textColor="@color/text_hard_gray_color"
-            android:maxLines="1"
-            android:text="这是标题"/>
+            android:maxLines="1"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -32,10 +32,13 @@
         android:id="@+id/news_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/body"
+        <LinearLayout
+            android:id="@+id/news_detail_content"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
 
 
         <!--<LinearLayout-->

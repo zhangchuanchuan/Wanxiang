@@ -137,7 +137,7 @@ public class HomeFragment extends BaseFragment {
 
         if(event.getNewsItemList() != null){
             for(NewsItem item : event.getNewsItemList()) {
-                if (!StringUtils.isNullOrEmpty(item.getLtitle())) {
+                if (!StringUtils.isNullOrEmpty(item.getLtitle()) && StringUtils.isNullOrEmpty(item.getTAGS())) {
                     list.add(item);
                 }
             }
