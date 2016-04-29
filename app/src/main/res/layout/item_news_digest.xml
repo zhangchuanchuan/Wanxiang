@@ -38,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="@dimen/digest_text_line_space"
+                android:maxLines="2"
                 android:text="@{newItem.digest}"/>
             <TextView
                 android:id="@+id/news_item_source"

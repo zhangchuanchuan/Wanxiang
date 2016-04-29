@@ -149,10 +149,10 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
         }
 
         // 添加编辑
-        NewsEcTextView ecTextView = new NewsEcTextView(vo.getEc());
-        mNewsContent.addView(ecTextView);
-
-
+        if(!StringUtils.isNullOrEmpty(vo.getEc())) {
+            NewsEcTextView ecTextView = new NewsEcTextView(vo.getEc());
+            mNewsContent.addView(ecTextView);
+        }
 
     }
 }
