@@ -1,5 +1,7 @@
 package com.stream.wangxiang.utils;
 
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 
 import com.stream.wangxiang.vo.NewsComponent;
@@ -57,65 +59,17 @@ public class StringUtils {
      * @param body 新闻body
      * @return 分段的list
      */
-    public static List<NewsComponent> parseBodyString(String body){
+    public static List<Spanned> parseBodyString(String body){
+        List<Spanned> list = new ArrayList<>();
 
-        body = body.replace("<!--", "<annotate>");
-        body = body.replace("-->", "</annotate>");
-        List<NewsComponent> list = new ArrayList<>();
-        try {
-            XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
-            parser.setInput(new StringReader(body));
-            int eventType = parser.getEventType();
-
-            while(eventType!= XmlPullParser.END_DOCUMENT){
-                String nodeName = parser.getName();
-                if(nodeName != null) {
-                    Log.d("zcc", parser.nextText());
-                    switch (nodeName) {
-                        case "p":
-                            NewsComponent textComponent = new NewsComponent();
-                            textComponent.setType(NewsComponent.TYPE_TEXT);
-                            textComponent.setData(parser.nextText());
-                            list.add(textComponent);
-                            break;
-                        case "annotate":
-                            NewsComponent annotateComponent = new NewsComponent();
-                            annotateComponent.setType(NewsComponent.TYPE_ANNOTATE);
-                            annotateComponent.setData(parser.nextText());
-                            list.add(annotateComponent);
-                            break;
-                        case "b":
-                            NewsComponent bComponent = new NewsComponent();
-                            bComponent.setType(NewsComponent.TYPE_BOLD);
-                            bComponent.setData(parser.nextText());
-                            list.add(bComponent);
-                            break;
-                        case "strong":
-                            NewsComponent strongComponent = new NewsComponent();
-                            strongComponent.setType(NewsComponent.TYPE_STRONG);
-                            strongComponent.setData(parser.nextText());
-                            list.add(strongComponent);
-                            break;
-                        default:
-                            NewsComponent othersComponent = new NewsComponent();
-                            othersComponent.setType(NewsComponent.TYPE_OTHERS);
-                            othersComponent.setData(parser.nextText());
-                            list.add(othersComponent);
-                            break;
-                    }
-                }
-                //下一个结点
-                eventType = parser.next();
-            }
-
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        String[] strs = body.split("<!--IMG#[0-9]*-->");
+        for(String s : strs) {
+            list.add(Html.fromHtml(s));
         }
-
-
         return list;
+    }
+
+    public static void parseBody(String body){
     }
 
 }

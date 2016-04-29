@@ -1,7 +1,14 @@
 package com.stream.wangxiang.fragment;
 
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +23,12 @@ import com.stream.wangxiang.net.GetNewsList;
 import com.stream.wangxiang.utils.StringUtils;
 import com.stream.wangxiang.view.NewsSimpleDraweeView;
 import com.stream.wangxiang.view.NewsTextView;
+import com.stream.wangxiang.vo.NewsComponent;
 import com.stream.wangxiang.vo.NewsDetailVo;
 import com.stream.wangxiang.vo.NewsImg;
 import com.stream.wanxiang.R;
+
+import org.xml.sax.XMLReader;
 
 import java.util.List;
 
@@ -99,26 +109,39 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
      */
     private void setNewsDetail(NewsDetailVo vo) {
         mNewsTitle.setText(vo.getTitle());
+
         List<NewsImg> imgList = vo.getImg();
 
         String body = vo.getBody();
-        StringUtils.parseBodyString(body);
+        List<Spanned> list = StringUtils.parseBodyString(body);
+        Log.d("zcc", list.toString());
 
-        String[] strs = body.split("<p>");
+//        Spanned sp = Html.fromHtml(body, null, null);
+//        TextView tv = new TextView(getContext());
+//
+//        tv.setText(sp);
+//        mNewsContent.addView(tv);
 
-        for(String s : strs){
-            if(s.contains("<!--IMG")){
-                NewsSimpleDraweeView nsdv = new NewsSimpleDraweeView(imgList.get(0));
-                mNewsContent.addView(nsdv);
+        if(list != null){
+            int index = 0;
+            for(Spanned s : list){
+                NewsTextView newsTextView = new NewsTextView(s);
+                mNewsContent.addView(newsTextView);
+                if(index < imgList.size()){
+                    NewsImg imgItem = imgList.get(index);
+                    NewsSimpleDraweeView newsSimpleDraweeView = new NewsSimpleDraweeView(imgItem);
+                    mNewsContent.addView(newsSimpleDraweeView);
 
-            }else {
-                if(s.length()>4) {
-                    s = s.substring(0, s.length() - 4);
-                    NewsTextView tv = new NewsTextView(s);
-                    mNewsContent.addView(tv);
+                    if(!StringUtils.isNullOrEmpty(imgItem.getAlt())){
+                        NewsTextView ntv = new NewsTextView(imgItem.getAlt(), 12);
+                        mNewsContent.addView(ntv);
+                    }
+                    index++;
                 }
             }
+
         }
+
 
     }
 }
