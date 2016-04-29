@@ -2,6 +2,7 @@ package com.stream.wangxiang.view;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.util.AttributeSet;
@@ -20,7 +21,7 @@ public class NewsTextView extends TextView {
 
     public NewsTextView(Spanned content){
         super(AppUtils.context);
-        this.setTextColor(AppUtils.getColor(R.color.text_more_gray_color));
+        this.setTextColor(AppUtils.getColor(R.color.text_hard_gray_color));
         setTextSize(18);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
         params.setMargins(AppUtils.getDimen(R.dimen.content_text_margin_left), AppUtils.getDimen(R.dimen.content_text_margin_top),

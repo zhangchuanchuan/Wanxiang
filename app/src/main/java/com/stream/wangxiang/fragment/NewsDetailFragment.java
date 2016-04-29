@@ -21,8 +21,11 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.stream.wangxiang.event.GetNewsDetailEvent;
 import com.stream.wangxiang.net.GetNewsList;
 import com.stream.wangxiang.utils.StringUtils;
+import com.stream.wangxiang.view.NewsEcTextView;
 import com.stream.wangxiang.view.NewsSimpleDraweeView;
+import com.stream.wangxiang.view.NewsSourceTextView;
 import com.stream.wangxiang.view.NewsTextView;
+import com.stream.wangxiang.view.NewsTitleTextView;
 import com.stream.wangxiang.vo.NewsComponent;
 import com.stream.wangxiang.vo.NewsDetailVo;
 import com.stream.wangxiang.vo.NewsImg;
@@ -108,39 +111,47 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
      * @param vo 新闻详情信息
      */
     private void setNewsDetail(NewsDetailVo vo) {
-        mNewsTitle.setText(vo.getTitle());
 
+        if(vo.getTitle().length()>15){
+            mNewsTitle.setText(vo.getTitle().substring(0, 14)+"...");
+        }else {
+            mNewsTitle.setText(vo.getTitle());
+        }
+
+        //  添加title
+        NewsTitleTextView titleTextView = new NewsTitleTextView(vo.getTitle());
+        mNewsContent.addView(titleTextView);
+
+        // 添加源和时间
+        NewsSourceTextView sourceTextView = new NewsSourceTextView(vo.getSource()+"  "+vo.getPtime());
+        mNewsContent.addView(sourceTextView);
+
+        // 添加正文
         List<NewsImg> imgList = vo.getImg();
-
         String body = vo.getBody();
         List<Spanned> list = StringUtils.parseBodyString(body);
         Log.d("zcc", list.toString());
+        int index = 0;
+        for(Spanned s : list){
+            NewsTextView newsTextView = new NewsTextView(s);
+            mNewsContent.addView(newsTextView);
+            if(index < imgList.size()){
+                NewsImg imgItem = imgList.get(index);
+                NewsSimpleDraweeView newsSimpleDraweeView = new NewsSimpleDraweeView(imgItem);
+                mNewsContent.addView(newsSimpleDraweeView);
 
-//        Spanned sp = Html.fromHtml(body, null, null);
-//        TextView tv = new TextView(getContext());
-//
-//        tv.setText(sp);
-//        mNewsContent.addView(tv);
-
-        if(list != null){
-            int index = 0;
-            for(Spanned s : list){
-                NewsTextView newsTextView = new NewsTextView(s);
-                mNewsContent.addView(newsTextView);
-                if(index < imgList.size()){
-                    NewsImg imgItem = imgList.get(index);
-                    NewsSimpleDraweeView newsSimpleDraweeView = new NewsSimpleDraweeView(imgItem);
-                    mNewsContent.addView(newsSimpleDraweeView);
-
-                    if(!StringUtils.isNullOrEmpty(imgItem.getAlt())){
-                        NewsTextView ntv = new NewsTextView(imgItem.getAlt(), 12);
-                        mNewsContent.addView(ntv);
-                    }
-                    index++;
+                if(!StringUtils.isNullOrEmpty(imgItem.getAlt())){
+                    NewsTextView ntv = new NewsTextView(imgItem.getAlt(), 12);
+                    mNewsContent.addView(ntv);
                 }
+                index++;
             }
-
         }
+
+        // 添加编辑
+        NewsEcTextView ecTextView = new NewsEcTextView(vo.getEc());
+        mNewsContent.addView(ecTextView);
+
 
 
     }
