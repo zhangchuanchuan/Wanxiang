@@ -59,6 +59,9 @@ public class StringUtils {
      */
     public static List<NewsComponent> parseBodyString(String body){
 
+        body = body.replace("<!--", "<annotate>");
+        body = body.replace("-->", "</annotate>");
+        List<NewsComponent> list = new ArrayList<>();
         try {
             XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
             parser.setInput(new StringReader(body));
@@ -67,13 +70,39 @@ public class StringUtils {
             while(eventType!= XmlPullParser.END_DOCUMENT){
                 String nodeName = parser.getName();
                 if(nodeName != null) {
+                    Log.d("zcc", parser.nextText());
                     switch (nodeName) {
+                        case "p":
+                            NewsComponent textComponent = new NewsComponent();
+                            textComponent.setType(NewsComponent.TYPE_TEXT);
+                            textComponent.setData(parser.nextText());
+                            list.add(textComponent);
+                            break;
+                        case "annotate":
+                            NewsComponent annotateComponent = new NewsComponent();
+                            annotateComponent.setType(NewsComponent.TYPE_ANNOTATE);
+                            annotateComponent.setData(parser.nextText());
+                            list.add(annotateComponent);
+                            break;
+                        case "b":
+                            NewsComponent bComponent = new NewsComponent();
+                            bComponent.setType(NewsComponent.TYPE_BOLD);
+                            bComponent.setData(parser.nextText());
+                            list.add(bComponent);
+                            break;
+                        case "strong":
+                            NewsComponent strongComponent = new NewsComponent();
+                            strongComponent.setType(NewsComponent.TYPE_STRONG);
+                            strongComponent.setData(parser.nextText());
+                            list.add(strongComponent);
+                            break;
                         default:
-                            Log.d("zcc", nodeName + ", "+parser.nextText());
+                            NewsComponent othersComponent = new NewsComponent();
+                            othersComponent.setType(NewsComponent.TYPE_OTHERS);
+                            othersComponent.setData(parser.nextText());
+                            list.add(othersComponent);
                             break;
                     }
-                }else{
-                    Log.d("zcc", parser.toString());
                 }
                 //下一个结点
                 eventType = parser.next();
@@ -86,7 +115,7 @@ public class StringUtils {
         }
 
 
-        return null;
+        return list;
     }
 
 }

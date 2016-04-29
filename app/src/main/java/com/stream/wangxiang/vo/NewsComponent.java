@@ -6,7 +6,11 @@ package com.stream.wangxiang.vo;
  */
 public class NewsComponent {
     public static final int TYPE_TEXT = 0;
-    public static final int TYPE_IMG = 1;
+    public static final int TYPE_ANNOTATE = 1;
+    public static final int TYPE_BOLD = 2;
+    public static final int TYPE_STRONG = 3;
+
+    public static final int TYPE_OTHERS = 4;
 
     private String data;
 
