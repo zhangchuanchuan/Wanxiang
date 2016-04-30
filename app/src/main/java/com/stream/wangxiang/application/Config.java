@@ -22,8 +22,15 @@ public class Config {
     // 各个栏目的接口 http://c.3g.163.com/nc/article/list/ + 频道的id + /0-20.html
     public static final String CATEGORY_URL_START = "http://c.3g.163.com/nc/article/list/";
 
-    // 今日要闻
-    public static final String TODAY_HOT_URL = "http://c.3g.163.com/nc/article/list/T1429173762551/0-20.html";
+    // 今日要闻 http://c.3g.163.com/nc/article/list/T1429173762551/0-20.html
+    private static final String TODAY_HOT_URL = "http://c.3g.163.com/nc/article/list/T1429173762551/";
+
+    public static final String HOT_ID = "T1429173762551";
+
+    public static String getTodayHotUrl(int count){
+        return TODAY_HOT_URL+count+"-20.html";
+    }
+
 
     // 本地新闻 http://c.3g.163.com/nc/article/local/ + city名字的base64编码 + /0-20.html
     public static final String LOCAL_NEWS_START = "http://c.3g.163.com/nc/article/local/";

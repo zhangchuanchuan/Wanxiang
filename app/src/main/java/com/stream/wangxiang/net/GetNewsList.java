@@ -36,7 +36,15 @@ public class GetNewsList {
      */
     public static void getHomeNewsList(int count){
         String url = Config.HOME_HEADLINE_URL_START + count+Config.URL_END;
+        getNewsList(url, Config.HOME_ID);
+    }
 
+    public static void getHotNewsList(int count){
+        String url = Config.getTodayHotUrl(count);
+        getNewsList(url, Config.HOT_ID);
+    }
+
+    public static void getNewsList(String url, final String postId){
         Request<JSONObject> request = NoHttp.createJsonObjectRequest(url);
         RequestQueue queue = NoHttp.newRequestQueue();
         queue.add(RequestWhat.GET_NEWS_LIST, request, new WxOnResponseListener<JSONObject>(){
@@ -46,7 +54,7 @@ public class GetNewsList {
                 Log.d("zcc", response.toString());
                 Log.d("zcc", response.get().toString());
                 try {
-                    JSONArray jsonArray = response.get().getJSONArray(Config.HOME_ID);
+                    JSONArray jsonArray = response.get().getJSONArray(postId);
                     Gson gson = new Gson();
                     List<NewsItem> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<NewsItem>>(){}.getType());
                     if(list != null){
@@ -63,7 +71,6 @@ public class GetNewsList {
             }
 
         });
-
     }
 
 
@@ -73,33 +80,7 @@ public class GetNewsList {
         String start = Config.CATEGORY_URL_START;
         String end = Config.URL_20_END;
         String url = start+categoryId+end;
-
-        Request<JSONObject> request = NoHttp.createJsonObjectRequest(url);
-        RequestQueue queue = NoHttp.newRequestQueue();
-        queue.add(RequestWhat.GET_CATEGORY_NEWS_LIST, request, new WxOnResponseListener<JSONObject>(){
-
-            @Override
-            public void onSucceed(int what, Response<JSONObject> response) {
-                Log.d("zcc", response.toString());
-                Log.d("zcc", response.get().toString());
-                try {
-                    JSONArray jsonArray = response.get().getJSONArray(categoryId);
-                    Gson gson = new Gson();
-                    List<NewsItem> list = gson.fromJson(jsonArray.toString(), new TypeToken<List<NewsItem>>(){}.getType());
-                    if(list != null){
-                        RefreshNewsListEvent event = new RefreshNewsListEvent();
-                        event.setNewsItemList(list);
-                        EventBus.getDefault().post(event);
-                        Log.d("zcc", list.toString());
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    AppUtils.showShortToast("解析数据失败");
-                }
-
-            }
-
-        });
+        getNewsList(url, categoryId);
     }
 
     public static void getNewsDetail(final String postId){

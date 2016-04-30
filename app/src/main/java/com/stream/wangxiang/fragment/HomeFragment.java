@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
+import com.stream.wangxiang.activity.HotActivity;
 import com.stream.wangxiang.activity.NewsDetailActivity;
 import com.stream.wangxiang.adapter.NewsItemAdapter;
 import com.stream.wangxiang.event.RefreshNewsListEvent;
@@ -69,6 +71,16 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        TextView mHot = (TextView) view.findViewById(R.id.today_hot_button);
+        mHot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), HotActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
+
         mNewsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -125,6 +137,7 @@ public class HomeFragment extends BaseFragment {
         if(mHomePtr.isRefreshing()){
             list.clear();
             mHomePtr.refreshComplete();
+            page = 0;
         }
 
         if(mNewsList.isFooterIsShow()){
