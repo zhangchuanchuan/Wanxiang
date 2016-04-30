@@ -8,4 +8,13 @@
     <string name="home_local">本地</string>
     <string name="home_myself">个人</string>
     <string name="today_hot">今日热点</string>
+
+    <!--分类-->
+    <string name="category_header_name">分类新闻</string>
+
+    <!--本地新闻-->
+    <string name="local_header_name">本地新闻</string>
+
+    <!--我的-->
+    <string name="my_header_name">我的</string>
 </resources>

@@ -3,8 +3,13 @@ package com.stream.wangxiang.activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.stream.wangxiang.event.SelectTabEvent;
+import com.stream.wangxiang.fragment.BaseFragment;
 import com.stream.wangxiang.fragment.HomeFragment;
+import com.stream.wangxiang.fragment.MainFragment;
 import com.stream.wangxiang.fragment.MainInterfaceFragment;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * 主界面的Activity
@@ -12,15 +17,19 @@ import com.stream.wangxiang.fragment.MainInterfaceFragment;
  */
 public class MainActivity extends BaseActivity {
 
+
+
+
     private long pressTime = 0;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState == null){
             MainInterfaceFragment mainInterfaceFragment = new MainInterfaceFragment();
-            HomeFragment homeFragment = new HomeFragment();
-            getSupportFragmentManager().beginTransaction().add(android.R.id.content, homeFragment).commit();
+            MainFragment mainFragment = new MainFragment();
+            getSupportFragmentManager().beginTransaction().add(android.R.id.content, mainFragment).commit();
             getSupportFragmentManager().beginTransaction().add(android.R.id.content, mainInterfaceFragment).commit();
         }
     }
@@ -35,4 +44,7 @@ public class MainActivity extends BaseActivity {
             pressTime = currentTime;
         }
     }
+
+
+
 }

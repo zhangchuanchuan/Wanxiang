@@ -5,6 +5,15 @@ package com.stream.wangxiang.event;
  * Created by 张川川 on 2016/4/22.
  */
 public class SelectTabEvent extends BaseEvent {
+
+    public SelectTabEvent(){
+
+    }
+
+    public SelectTabEvent(int tabIndex){
+        this.tabIndex = tabIndex;
+    }
+
     private int tabIndex;
 
     public int getTabIndex() {

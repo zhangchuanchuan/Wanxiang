@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stream.wangxiang.activity.HotActivity;
@@ -46,10 +47,19 @@ public class HotFragment extends BaseFragment {
 
     private int page = 0;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hot, null);
+        ImageView mBackImg = (ImageView) view.findViewById(R.id.img_back);
+        mBackImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+
         mNewsList = (LoadMoreListView)view.findViewById(R.id.news_list);
         mNewsList.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
