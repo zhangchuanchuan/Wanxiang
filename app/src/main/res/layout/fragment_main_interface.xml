@@ -79,13 +79,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/icon_subscribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/main_tab_bar"
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
         <ImageView
-            android:id="@+id/icon_subscribe"
             android:layout_width="@dimen/main_subscribe_size"
             android:layout_height="@dimen/main_subscribe_size"
             android:layout_gravity="center_horizontal"

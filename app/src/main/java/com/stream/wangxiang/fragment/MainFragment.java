@@ -31,6 +31,8 @@ public class MainFragment extends BaseFragment {
     private BaseFragment mLocalFragment;
     private BaseFragment mMyselfFragment;
 
+    private BaseFragment mSubscribeFragment;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,12 +83,17 @@ public class MainFragment extends BaseFragment {
                 goToMyself();
                 break;
             case TAB_INDEX_SUBSCRIBE:
-                goToSubscribe();
+                goToSubscribe(event.getFromTabIndex());
         }
 
     }
 
-    private void goToSubscribe() {
+    private void goToSubscribe(int fromIndex) {
+        if(mSubscribeFragment == null){
+            mSubscribeFragment = new SubscribeFragment();
+        }
+        ((SubscribeFragment)mSubscribeFragment).setmFromTabIndex(fromIndex);
+        switchFragment(mSubscribeFragment);
 
     }
 

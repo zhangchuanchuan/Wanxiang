@@ -14,7 +14,11 @@ public class SelectTabEvent extends BaseEvent {
         this.tabIndex = tabIndex;
     }
 
+
     private int tabIndex;
+
+    // 来源tab，subscribe需要辨别
+    private int fromTabIndex;
 
     public int getTabIndex() {
         return tabIndex;
@@ -22,5 +26,13 @@ public class SelectTabEvent extends BaseEvent {
 
     public void setTabIndex(int tabIndex) {
         this.tabIndex = tabIndex;
+    }
+
+    public int getFromTabIndex() {
+        return fromTabIndex;
+    }
+
+    public void setFromTabIndex(int fromTabIndex) {
+        this.fromTabIndex = fromTabIndex;
     }
 }

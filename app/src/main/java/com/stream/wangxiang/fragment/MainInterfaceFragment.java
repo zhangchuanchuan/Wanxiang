@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.stream.wangxiang.event.SelectTabEvent;
 import com.stream.wanxiang.R;
@@ -26,7 +27,7 @@ public class MainInterfaceFragment extends BaseFragment implements View.OnClickL
 
     private ImageView mIconHome;
     private ImageView mIconCategory;
-    private ImageView mIconSubscribe;
+    private LinearLayout mIconSubscribe;
     private ImageView mIconLocal;
     private ImageView mIconMyself;
 
@@ -39,7 +40,7 @@ public class MainInterfaceFragment extends BaseFragment implements View.OnClickL
         View view =  inflater.inflate(R.layout.fragment_main_interface, container, false);
         mIconHome = ((ImageView) view.findViewById(R.id.icon_home));
         mIconCategory = ((ImageView) view.findViewById(R.id.icon_category));
-        mIconSubscribe = ((ImageView) view.findViewById(R.id.icon_subscribe));
+        mIconSubscribe = ((LinearLayout) view.findViewById(R.id.icon_subscribe));
         mIconLocal = ((ImageView) view.findViewById(R.id.icon_local));
         mIconMyself = ((ImageView) view.findViewById(R.id.icon_myself));
         mIconHome.setOnClickListener(this);
@@ -75,6 +76,7 @@ public class MainInterfaceFragment extends BaseFragment implements View.OnClickL
             case R.id.icon_subscribe:
                 SelectTabEvent subTabEvent = new SelectTabEvent();
                 subTabEvent.setTabIndex(TAB_INDEX_SUBSCRIBE);
+                subTabEvent.setFromTabIndex(selectTabIndex);
                 EventBus.getDefault().post(subTabEvent);
                 break;
             case R.id.icon_local:
