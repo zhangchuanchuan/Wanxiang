@@ -21,6 +21,7 @@ public class MainFragment extends BaseFragment {
     public static final int TAB_INDEX_CATEGORY = 1;
     public static final int TAB_INDEX_LOCAL = 2;
     public static final int TAB_INDEX_MYSELF = 3;
+    public static final int TAB_INDEX_SUBSCRIBE = 4;
 
     private BaseFragment currentFragment;
 
@@ -79,7 +80,13 @@ public class MainFragment extends BaseFragment {
             case TAB_INDEX_MYSELF:
                 goToMyself();
                 break;
+            case TAB_INDEX_SUBSCRIBE:
+                goToSubscribe();
         }
+
+    }
+
+    private void goToSubscribe() {
 
     }
 

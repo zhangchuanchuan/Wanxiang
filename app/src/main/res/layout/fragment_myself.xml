@@ -3,4 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:background="@color/wanxiang_color"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_bar_height">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/head_logo_margin_left"
+            style="@style/text_category"
+            android:text="@string/my_header_name"/>
+    </RelativeLayout>
+
 </LinearLayout>

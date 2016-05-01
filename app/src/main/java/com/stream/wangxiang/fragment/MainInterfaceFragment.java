@@ -20,9 +20,9 @@ public class MainInterfaceFragment extends BaseFragment implements View.OnClickL
 
     public static final int TAB_INDEX_HOME = 0;
     public static final int TAB_INDEX_CATEGORY = 1;
-    public static final int TAB_IDNEX_SUBSCRIBE = 2;
-    public static final int TAB_INDEX_LOCAL = 3;
-    public static final int TAB_INDEX_MYSELF = 4;
+    public static final int TAB_INDEX_SUBSCRIBE = 4;
+    public static final int TAB_INDEX_LOCAL = 2;
+    public static final int TAB_INDEX_MYSELF = 3;
 
     private ImageView mIconHome;
     private ImageView mIconCategory;
@@ -74,7 +74,7 @@ public class MainInterfaceFragment extends BaseFragment implements View.OnClickL
                 break;
             case R.id.icon_subscribe:
                 SelectTabEvent subTabEvent = new SelectTabEvent();
-                subTabEvent.setTabIndex(TAB_IDNEX_SUBSCRIBE);
+                subTabEvent.setTabIndex(TAB_INDEX_SUBSCRIBE);
                 EventBus.getDefault().post(subTabEvent);
                 break;
             case R.id.icon_local:

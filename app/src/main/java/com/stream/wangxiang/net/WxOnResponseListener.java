@@ -1,5 +1,6 @@
 package com.stream.wangxiang.net;
 
+import com.stream.wangxiang.utils.AppUtils;
 import com.yolanda.nohttp.OnResponseListener;
 import com.yolanda.nohttp.Response;
 
@@ -19,7 +20,7 @@ public class WxOnResponseListener<T> implements OnResponseListener<T> {
 
     @Override
     public void onFailed(int what, String url, Object tag, Exception exception, int responseCode, long networkMillis) {
-
+        AppUtils.showShortToast("网络貌似有些问题哦");
     }
 
     @Override
