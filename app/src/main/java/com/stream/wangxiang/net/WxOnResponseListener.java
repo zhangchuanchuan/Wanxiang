@@ -5,6 +5,7 @@ import com.yolanda.nohttp.OnResponseListener;
 import com.yolanda.nohttp.Response;
 
 /**
+ * 这是网络的接口回调适配器
  * Created by 张川川 on 2016/4/24.
  */
 public class WxOnResponseListener<T> implements OnResponseListener<T> {

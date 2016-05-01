@@ -18,13 +18,44 @@
             android:text="@string/category_header_name"/>
     </RelativeLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/category_subscribed"
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/category_subscribed"
+            android:layout_width="match_parent"
+            android:paddingRight="25dp"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
+        <ImageView
+            android:id="@+id/edit_category_list"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignRight="@id/category_subscribed"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_arrow_expand_down"/>
+    </RelativeLayout>
+
+
+    <!--下拉刷新控件-->
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/category_ptr"
+        xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        cube_ptr:ptr_duration_to_close="200"
+        cube_ptr:ptr_duration_to_close_header="1000"
+        cube_ptr:ptr_keep_header_when_refresh="true"
+        cube_ptr:ptr_pull_to_fresh="false"
+        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+        cube_ptr:ptr_resistance="1.7">
+        <com.stream.wangxiang.view.LoadMoreListView
+            android:id="@+id/news_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
 </LinearLayout>

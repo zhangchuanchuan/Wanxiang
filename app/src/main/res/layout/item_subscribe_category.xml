@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="52dp"
+    android:layout_height="38dp">
+    <TextView
+        android:id="@+id/category_item"
+        android:layout_centerInParent="true"
+        android:textColor="@color/gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"/>
+    <View
+        android:id="@+id/base_line"
+        android:layout_alignParentBottom="true"
+        android:background="@color/text_brick_red_color"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="2dp"/>
+</RelativeLayout>
