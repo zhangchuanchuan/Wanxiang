@@ -75,11 +75,8 @@ public class GetNewsList {
 
 
 
-
-    public static void getCategoryNewList(final String categoryId){
-        String start = Config.CATEGORY_URL_START;
-        String end = Config.URL_20_END;
-        String url = start+categoryId+end;
+    public static void getCategoryNewsList(String categoryId, int count){
+        String url = Config.getCategoryNewsListUrl(categoryId, count);
         getNewsList(url, categoryId);
     }
 

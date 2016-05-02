@@ -20,7 +20,11 @@ public class Config {
     public static final String CATEGORY_LIST_URL = "http://c.m.163.com/nc/topicset/android/subscribe/manage/listspecial.html";
 
     // 各个栏目的接口 http://c.3g.163.com/nc/article/list/ + 频道的id + /0-20.html
-    public static final String CATEGORY_URL_START = "http://c.3g.163.com/nc/article/list/";
+    private static final String CATEGORY_URL_START = "http://c.3g.163.com/nc/article/list/";
+
+    public static final String getCategoryNewsListUrl(String categoryId, int count){
+        return CATEGORY_URL_START+categoryId+"/"+count+URL_END;
+    }
 
     // 今日要闻 http://c.3g.163.com/nc/article/list/T1429173762551/0-20.html
     private static final String TODAY_HOT_URL = "http://c.3g.163.com/nc/article/list/T1429173762551/";
