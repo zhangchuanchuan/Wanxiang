@@ -26,6 +26,9 @@ public class NewsSimpleDraweeView extends SimpleDraweeView {
     public NewsSimpleDraweeView(NewsImg img){
         super(AppUtils.context);
         String size = img.getPixel();
+        if(size == null){
+            return;
+        }
         String[] dimens = size.split("\\*");
 
         int windowWidth = DimenUtils.getDisplayWidth(AppUtils.context) - 64;

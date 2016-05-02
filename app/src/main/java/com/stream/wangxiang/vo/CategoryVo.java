@@ -5,33 +5,70 @@ package com.stream.wangxiang.vo;
  * Created by 张川川 on 2016/5/1.
  */
 public class CategoryVo {
-    private String name;
 
-    private boolean isChcked;
+    public static final String CAN_SHOW_CATEGORY = "manual";
 
-    private String postId;
 
-    public String getName() {
-        return name;
+    // 订阅了还是没有订阅
+    private boolean isChecked;
+
+    // 当前选择的
+    private boolean isSelected;
+
+
+    private String template;
+    private String tname;
+    private String ename;
+    private String tid;
+
+
+
+    public boolean isChecked() {
+        return isChecked;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
-    public boolean isChcked() {
-        return isChcked;
+
+    public String getTemplate() {
+        return template;
     }
 
-    public void setChcked(boolean chcked) {
-        isChcked = chcked;
+    public void setTemplate(String template) {
+        this.template = template;
     }
 
-    public String getPostId() {
-        return postId;
+    public String getTname() {
+        return tname;
     }
 
-    public void setPostId(String postId) {
-        this.postId = postId;
+    public void setTname(String tname) {
+        this.tname = tname;
+    }
+
+    public String getEname() {
+        return ename;
+    }
+
+    public void setEname(String ename) {
+        this.ename = ename;
+    }
+
+    public String getTid() {
+        return tid;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

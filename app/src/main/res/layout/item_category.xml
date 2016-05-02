@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="categoryItem"
+            type="com.stream.wangxiang.vo.CategoryVo"/>
+    </data>
+    <RelativeLayout
+        android:id="@+id/item_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginLeft="45dp"
+            android:gravity="center"
+            android:text="@{categoryItem.tname}"/>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:src="@{categoryItem.checked ? @drawable/ic_category_selected : @drawable/ic_category_unselected}"/>
+    </RelativeLayout>
+</layout>

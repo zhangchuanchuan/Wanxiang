@@ -36,9 +36,9 @@ public class SubscribeCategoryAdapter extends RecyclerView.Adapter<SubscribeCate
     @Override
     public void onBindViewHolder(final CategoryItemViewHolder holder, int position) {
         CategoryVo cateVo = mCateList.get(position);
-        holder.textView.setText(cateVo.getName());
+        holder.textView.setText(cateVo.getTname());
 
-        if(cateVo.isChcked()){
+        if(cateVo.isSelected()){
             // 设置背景颜色
             holder.textView.setTextColor(AppUtils.getColor(R.color.text_brick_red_color));
             holder.view.setVisibility(View.VISIBLE);

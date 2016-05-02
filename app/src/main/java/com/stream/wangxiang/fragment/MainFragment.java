@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.stream.wangxiang.event.RefreshSubscribeEvent;
 import com.stream.wangxiang.event.SelectTabEvent;
 import com.stream.wanxiang.R;
 
@@ -74,7 +75,7 @@ public class MainFragment extends BaseFragment {
                 goToHome();
                 break;
             case TAB_INDEX_CATEGORY:
-                goToCategory();
+                goToCategory(event.getFromTabIndex());
                 break;
             case TAB_INDEX_LOCAL:
                 goToLocal();
@@ -111,6 +112,19 @@ public class MainFragment extends BaseFragment {
         switchFragment(mCategoryFragment);
     }
 
+    private void goToCategory(int tabIndex){
+        if(mCategoryFragment == null){
+            mCategoryFragment = new CategoryFragment();
+            switchFragment(mCategoryFragment);
+        }else {
+            switchFragment(mCategoryFragment);
+
+            if (tabIndex == TAB_INDEX_SUBSCRIBE) {
+                EventBus.getDefault().post(new RefreshSubscribeEvent());
+            }
+        }
+    }
+
 
     private void goToLocal() {
         if(mLocalFragment == null){
@@ -134,9 +148,18 @@ public class MainFragment extends BaseFragment {
 
         }else{
             if (toFragment.isAdded()) {
-                getFragmentManager().beginTransaction().show(toFragment).hide(currentFragment).commit();
+                if(currentFragment.equals(mSubscribeFragment)) {
+                    getFragmentManager().beginTransaction().show(toFragment).remove(currentFragment).commit();
+                }else{
+                    getFragmentManager().beginTransaction().show(toFragment).hide(currentFragment).commit();
+                }
             } else {
-                getFragmentManager().beginTransaction().hide(currentFragment).add(R.id.main_fragment, toFragment).commit();
+                if(currentFragment.equals(mSubscribeFragment)) {
+                    getFragmentManager().beginTransaction().remove(currentFragment).add(R.id.main_fragment, toFragment).commit();
+
+                }else{
+                    getFragmentManager().beginTransaction().hide(currentFragment).add(R.id.main_fragment, toFragment).commit();
+                }
             }
             this.currentFragment = toFragment;
         }

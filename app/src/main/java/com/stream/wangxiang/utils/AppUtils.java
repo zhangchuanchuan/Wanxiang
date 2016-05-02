@@ -46,7 +46,7 @@ public class AppUtils {
     }
 
     public static void showShortToast(String msg){
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
     public static View getView(int resourceId){
