@@ -71,6 +71,12 @@ public class GetNewsList {
 
             }
 
+            @Override
+            public void onFailed(int what, String url, Object tag, Exception exception, int responseCode, long networkMillis) {
+                super.onFailed(what, url, tag, exception, responseCode, networkMillis);
+                RefreshNewsListEvent event = new RefreshNewsListEvent();
+                EventBus.getDefault().post(event);
+            }
         });
     }
 

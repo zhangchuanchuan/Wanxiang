@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/normal_bg_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--header-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_bar_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="选择城市"
+            android:textColor="@color/text_hard_gray_color"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="15dp"
+            android:paddingBottom="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="15dp"
+            android:src="@drawable/ic_left" />
+    </FrameLayout>
+
+    <!--当前所选-->
+    <TextView
+        android:id="@+id/tv_location_hint"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="当前设置"
+        android:textColor="@color/text_hard_gray_color"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/tv_location_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/ic_zz_location"
+        android:drawablePadding="2dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:text="北京"
+        android:textColor="@color/text_hard_gray_color"
+        android:textSize="14dp" />
+
+    <!--ListView-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:background="@color/white"
+            android:layout_marginTop="20dp"
+            android:id="@+id/city_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
+        <com.stream.wangxiang.view.LetterListView
+            android:id="@+id/letter_view"
+            android:layout_width="30dip"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center_vertical"
+            android:background="@color/transparent" />
+
+    </FrameLayout>
+
+</LinearLayout>

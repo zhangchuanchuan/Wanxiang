@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.stream.wangxiang.activity.ChooseAreaActivity;
 import com.stream.wangxiang.vo.WeatherForecast;
 import com.stream.wangxiang.vo.WeatherVo;
 import com.stream.wanxiang.R;
@@ -54,8 +55,9 @@ public class ViewUtils {
         chooseCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO 城市列表acitivty
-//                startContext.startActivity(new Intent());
+                Intent intent = new Intent();
+                intent.setClass(startContext, ChooseAreaActivity.class);
+                startContext.startActivity(intent);
             }
         });
 
