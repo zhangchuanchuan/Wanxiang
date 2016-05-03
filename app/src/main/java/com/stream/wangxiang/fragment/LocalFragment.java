@@ -135,6 +135,11 @@ public class LocalFragment extends BaseFragment {
                     return;
                 }
 
+                // 点击的是header
+                if(position < 0 ){
+                    return;
+                }
+
                 String postId = mNewsList.get(position).getDocid();
                 if(StringUtils.isNullOrEmpty(postId)){
                     return;
