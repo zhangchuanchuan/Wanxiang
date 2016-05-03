@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,5 +19,17 @@
             style="@style/text_category"
             android:text="@string/local_header_name"/>
     </RelativeLayout>
+
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/local_ptr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.stream.wangxiang.view.LoadMoreListView
+            android:id="@+id/local_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.stream.wangxiang.view.LoadMoreListView>
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
 </LinearLayout>

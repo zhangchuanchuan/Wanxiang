@@ -13,6 +13,8 @@ public class SharedPreferenceUtils {
 
     public static final String KEY_FOR_SUBSCRIBE_CATEGORY = "subscribe_category";
 
+    public static final String KEY_FOR_LOCAL_CITY = "local_ctiy";
+
     private static SharedPreferences sharedPreferences;
 
     public static synchronized boolean putString(String key, String value){

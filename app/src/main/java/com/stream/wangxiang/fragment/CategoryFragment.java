@@ -231,6 +231,7 @@ public class CategoryFragment extends BaseFragment {
     public void onEventMainThread(RefreshSubscribeEvent event){
 
         if(SettingUtils.isSettingNew) {
+            SettingUtils.isSettingNew = false;
             // 先将原先的数据清除
             newsItemsList.clear();
             // 初始化订阅的分类新闻列表

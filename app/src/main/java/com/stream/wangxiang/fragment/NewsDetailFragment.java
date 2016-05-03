@@ -111,7 +111,7 @@ public class NewsDetailFragment extends BaseFragment implements View.OnClickList
      * @param vo 新闻详情信息
      */
     private void setNewsDetail(NewsDetailVo vo) {
-
+        Log.d("zcc", vo.getTitle());
         if(vo.getTitle().length()>15){
             mNewsTitle.setText(vo.getTitle().substring(0, 14)+"...");
         }else {

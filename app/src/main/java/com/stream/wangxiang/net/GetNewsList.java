@@ -1,5 +1,6 @@
 package com.stream.wangxiang.net;
 
+import android.util.Base64;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -78,6 +79,11 @@ public class GetNewsList {
     public static void getCategoryNewsList(String categoryId, int count){
         String url = Config.getCategoryNewsListUrl(categoryId, count);
         getNewsList(url, categoryId);
+    }
+
+    public static void getLocalNewsList(String city, int count){
+        String url = Config.getLocalNewsListUrl(city, count);
+        getNewsList(url, city);
     }
 
     public static void getNewsDetail(final String postId){

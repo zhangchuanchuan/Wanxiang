@@ -1,5 +1,7 @@
 package com.stream.wangxiang.application;
 
+import android.util.Base64;
+
 /**
  * 一些配置相关，包括一些key
  * Created by 张川川 on 2016/4/18.
@@ -37,7 +39,13 @@ public class Config {
 
 
     // 本地新闻 http://c.3g.163.com/nc/article/local/ + city名字的base64编码 + /0-20.html
-    public static final String LOCAL_NEWS_START = "http://c.3g.163.com/nc/article/local/";
+    private static final String LOCAL_NEWS_START = "http://c.m.163.com/nc/article/local/";
+
+    public static final String getLocalNewsListUrl(String city, int count){
+        String base64City = Base64.encodeToString(city.getBytes(), Base64.DEFAULT);
+        base64City = base64City.trim();
+        return LOCAL_NEWS_START + base64City+"/"+count+URL_END;
+    }
 
     // 新闻详情的url 	http://c.m.163.com/nc/article/BKMKB6EL001168BQ/full.html
     // C.m.163.com/nc/article/+文章的postid+/full.html
