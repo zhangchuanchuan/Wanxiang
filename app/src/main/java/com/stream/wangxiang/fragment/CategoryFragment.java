@@ -23,6 +23,7 @@ import com.stream.wangxiang.event.SelectTabEvent;
 import com.stream.wangxiang.net.GetCategoryList;
 import com.stream.wangxiang.net.GetNewsList;
 import com.stream.wangxiang.utils.AppUtils;
+import com.stream.wangxiang.utils.SettingUtils;
 import com.stream.wangxiang.utils.SharedPreferenceUtils;
 import com.stream.wangxiang.utils.StringUtils;
 import com.stream.wangxiang.view.LoadMoreListView;
@@ -186,7 +187,7 @@ public class CategoryFragment extends BaseFragment {
                     }
                 }
 
-                Set<String> subscribeSet = SharedPreferenceUtils.getStringSet(SharedPreferenceUtils.KEY_FOR_SUBSCRIBE_CATEGORY);
+                Set<String> subscribeSet = SharedPreferenceUtils.getStringSet(SharedPreferenceUtils.KEY_FOR_SUBSCRIBE_CATEGORY, SettingUtils.getDefaultSubscribeStringSet());
                 mSubscribeCategoryList.clear();
                 for(String s : subscribeSet){
                     mSubscribeCategoryList.add(mCategoryList.get(Integer.valueOf(s)));
@@ -229,12 +230,14 @@ public class CategoryFragment extends BaseFragment {
 
     public void onEventMainThread(RefreshSubscribeEvent event){
 
-        // 先将原先的数据清除
-        newsItemsList.clear();
-        // 初始化订阅的分类新闻列表
-        GetCategoryList.getCagegoryList();
+        if(SettingUtils.isSettingNew) {
+            // 先将原先的数据清除
+            newsItemsList.clear();
+            // 初始化订阅的分类新闻列表
+            GetCategoryList.getCagegoryList();
 
-        setOnBusy(true);
+            setOnBusy(true);
+        }
     }
 
     /**

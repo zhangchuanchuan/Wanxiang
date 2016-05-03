@@ -71,18 +71,18 @@ public class SharedPreferenceUtils {
 
 
 
-    public static String getString(String key){
+    public static String getString(String key, String def){
         if(sharedPreferences == null){
             sharedPreferences = AppUtils.context.getSharedPreferences("wanxiang_cache", Context.MODE_PRIVATE);
         }
-        return sharedPreferences.getString(key, null);
+        return sharedPreferences.getString(key, def);
     }
 
-    public static Set<String> getStringSet(String key){
+    public static Set<String> getStringSet(String key, Set<String> def){
         if(sharedPreferences == null){
             sharedPreferences = AppUtils.context.getSharedPreferences("wanxiang_cache", Context.MODE_PRIVATE);
         }
-        return sharedPreferences.getStringSet(key, null);
+        return sharedPreferences.getStringSet(key, def);
     }
 
     public static int getInt(String key){

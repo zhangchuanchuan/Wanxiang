@@ -75,7 +75,7 @@ public class MainFragment extends BaseFragment {
                 goToHome();
                 break;
             case TAB_INDEX_CATEGORY:
-                goToCategory(event.getFromTabIndex());
+                goToCategory();
                 break;
             case TAB_INDEX_LOCAL:
                 goToLocal();
@@ -105,24 +105,15 @@ public class MainFragment extends BaseFragment {
         switchFragment(mHomeFragment);
     }
 
-    private void goToCategory() {
+
+    private void goToCategory(){
         if(mCategoryFragment == null){
             mCategoryFragment = new CategoryFragment();
         }
+
         switchFragment(mCategoryFragment);
-    }
+        EventBus.getDefault().post(new RefreshSubscribeEvent());
 
-    private void goToCategory(int tabIndex){
-        if(mCategoryFragment == null){
-            mCategoryFragment = new CategoryFragment();
-            switchFragment(mCategoryFragment);
-        }else {
-            switchFragment(mCategoryFragment);
-
-            if (tabIndex == TAB_INDEX_SUBSCRIBE) {
-                EventBus.getDefault().post(new RefreshSubscribeEvent());
-            }
-        }
     }
 
 

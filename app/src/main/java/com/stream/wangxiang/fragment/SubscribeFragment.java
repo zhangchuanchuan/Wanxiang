@@ -13,6 +13,7 @@ import com.stream.wangxiang.adapter.CategoryAdapter;
 import com.stream.wangxiang.event.GetCategoryListEvent;
 import com.stream.wangxiang.event.SelectTabEvent;
 import com.stream.wangxiang.net.GetCategoryList;
+import com.stream.wangxiang.utils.SettingUtils;
 import com.stream.wangxiang.utils.SharedPreferenceUtils;
 import com.stream.wangxiang.view.LoadMoreListView;
 import com.stream.wangxiang.vo.CategoryVo;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import de.greenrobot.event.EventBus;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -133,7 +135,7 @@ public class SubscribeFragment extends BaseFragment implements View.OnClickListe
                     }
                 }
 
-                Set<String> subscribeSet = SharedPreferenceUtils.getStringSet(SharedPreferenceUtils.KEY_FOR_SUBSCRIBE_CATEGORY);
+                Set<String> subscribeSet = SharedPreferenceUtils.getStringSet(SharedPreferenceUtils.KEY_FOR_SUBSCRIBE_CATEGORY, SettingUtils.getDefaultSubscribeStringSet());
                 for(String s : subscribeSet){
                     mCategoryList.get(Integer.valueOf(s)).setChecked(true);
                 }
@@ -149,7 +151,7 @@ public class SubscribeFragment extends BaseFragment implements View.OnClickListe
         switch (v.getId()){
             case R.id.subscribe_complete:
 
-                Set<String> subscribeSet = new HashSet<>();
+                Set<String> subscribeSet = new TreeSet<>();
                 for(int i=0; i<mCategoryList.size() ; i++){
 
                     if(mCategoryList.get(i).isChecked()){
@@ -158,9 +160,8 @@ public class SubscribeFragment extends BaseFragment implements View.OnClickListe
                 }
                 SharedPreferenceUtils.putStringSet(SharedPreferenceUtils.KEY_FOR_SUBSCRIBE_CATEGORY, subscribeSet);
 
-
+                SettingUtils.isSettingNew = true;
                 SelectTabEvent event = new SelectTabEvent(this.mFromTabIndex);
-                event.setFromTabIndex(MainFragment.TAB_INDEX_SUBSCRIBE);
                 EventBus.getDefault().post(event);
                 break;
             case R.id.subscribe_cancel:
