@@ -16,6 +16,7 @@
             android:layout_marginLeft="@dimen/img_margin_left"
             android:layout_marginRight="@dimen/img_margin_right"
             android:src="@{newItem.imgsrc != null ? newItem.imgsrc : newItem.defaultImgUrl}"
+            android:background="@drawable/no_picture"
             android:layout_width="106dp"
             android:layout_height="78dp"/>
         <RelativeLayout

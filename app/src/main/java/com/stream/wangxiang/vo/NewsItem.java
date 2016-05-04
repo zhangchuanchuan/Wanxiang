@@ -1,5 +1,9 @@
 package com.stream.wangxiang.vo;
 
+import android.net.Uri;
+
+import com.stream.wanxiang.R;
+
 /**
  * 新闻列表条目的io
  * Created by 张川川 on 2016/4/23.
@@ -52,7 +56,7 @@ public class NewsItem {
         this.TAGS = TAGS;
     }
 
-    private String defaultImgUrl = "http://stacdn201.ganjistatic1.com/src/image/house/noimg.gif";
+    private String defaultImgUrl = "";
 
     public String getPostid() {
         return postid;
