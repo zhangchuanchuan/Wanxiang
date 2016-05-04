@@ -118,7 +118,7 @@ public class CategoryFragment extends BaseFragment {
                 if(position == newsItemsList.size()){
                     return;
                 }
-
+                Log.d("zcc", "listview de item "+position);
                 String postId = newsItemsList.get(position).getPostid();
                 if(StringUtils.isNullOrEmpty(postId)){
                     return;
@@ -262,8 +262,11 @@ public class CategoryFragment extends BaseFragment {
                     if(mSubscribeCategoryList.size() == 0){
                         return;
                     }
+                    Log.d("zcc", "position is "+position);
                     // 请求数据
                     GetNewsList.getCategoryNewsList(categoryList.get(position).getTid(), REFRESH_CODE);
+                    mNewsList.setSelection(0);
+                    page = 0;
                     categoryList.get(mCheckedPosition).setSelected(false);
                     categoryList.get(position).setSelected(true);
                     mCheckedPosition = position;

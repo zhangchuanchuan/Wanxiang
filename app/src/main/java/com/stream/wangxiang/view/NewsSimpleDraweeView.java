@@ -36,8 +36,8 @@ public class NewsSimpleDraweeView extends SimpleDraweeView {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(windowWidth,
                 windowWidth*(Integer.valueOf(dimens[1]))/(Integer.valueOf(dimens[0])));
         params.gravity = Gravity.CENTER_HORIZONTAL;
-//        params.setMargins(AppUtils.getDimen(R.dimen.content_text_margin_left), AppUtils.getDimen(R.dimen.content_text_margin_top),
-//                AppUtils.getDimen(R.dimen.content_text_margin_right), AppUtils.getDimen(R.dimen.content_text_margin_top));
+        params.setMargins(AppUtils.getDimen(R.dimen.drawee_margin_left), AppUtils.getDimen(R.dimen.drawee_margin_top),
+                AppUtils.getDimen(R.dimen.drawee_margin_right), AppUtils.getDimen(R.dimen.drawee_margin_top));
         this.setLayoutParams(params);
         this.setImageURI(Uri.parse(img.getSrc()));
 
