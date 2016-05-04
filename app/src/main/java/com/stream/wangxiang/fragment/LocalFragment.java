@@ -15,6 +15,7 @@ import com.stream.wangxiang.activity.NewsDetailActivity;
 import com.stream.wangxiang.adapter.NewsItemAdapter;
 import com.stream.wangxiang.event.GetWeatherInfoEvent;
 import com.stream.wangxiang.event.RefreshNewsListEvent;
+import com.stream.wangxiang.event.UpdateLocalCityEvent;
 import com.stream.wangxiang.net.GetNewsList;
 import com.stream.wangxiang.net.GetWeatherInfo;
 import com.stream.wangxiang.utils.SettingUtils;
@@ -152,8 +153,15 @@ public class LocalFragment extends BaseFragment {
         });
     }
 
-    // 刷新数据
+    // 刷新数据,拉取最新的数据
     private void getLocalNewsData() {
+        mNewsList.clear();
+        page = 0;
+        if(weatherView != null) {
+            mMainLayout.removeHeaderView(weatherView);
+            headerNum = 0;
+        }
+        mMainLayout.refreshDrawableState();
         String city = SharedPreferenceUtils.getString(SharedPreferenceUtils.KEY_FOR_LOCAL_CITY, SettingUtils.defaultCity);
         GetNewsList.getLocalNewsList(city, REFRESH_CODE);
         GetWeatherInfo.getWeather(city);
@@ -216,6 +224,12 @@ public class LocalFragment extends BaseFragment {
                 mMainLayout.addHeaderView(weatherView);
             }
             headerNum = 1;
+        }
+    }
+
+    public void onEventMainThread(UpdateLocalCityEvent event){
+        if(event != null){
+            getLocalNewsData();
         }
     }
 

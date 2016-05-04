@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.stream.wangxiang.application.Config;
 import com.stream.wangxiang.event.GetCityListEvent;
 import com.stream.wangxiang.event.GetWeatherInfoEvent;
+import com.stream.wangxiang.event.RefreshNewsListEvent;
 import com.stream.wangxiang.utils.AppUtils;
 import com.stream.wangxiang.utils.StringUtils;
 import com.stream.wangxiang.vo.Cities;

@@ -27,4 +27,7 @@ public class RequestWhat {
     // 获取详细新闻的
     public static final int GET_NEWS_DETAIL = 6;
 
+    // 热门
+    public static final int GET_HOT_NEWS_LIST = 7;
+
 }

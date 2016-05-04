@@ -37,18 +37,18 @@ public class GetNewsList {
      */
     public static void getHomeNewsList(int count){
         String url = Config.HOME_HEADLINE_URL_START + count+Config.URL_END;
-        getNewsList(url, Config.HOME_ID);
+        getNewsList(RequestWhat.GET_NEWS_LIST, url, Config.HOME_ID);
     }
 
     public static void getHotNewsList(int count){
         String url = Config.getTodayHotUrl(count);
-        getNewsList(url, Config.HOT_ID);
+        getNewsList(RequestWhat.GET_HOT_NEWS_LIST, url, Config.HOT_ID);
     }
 
-    public static void getNewsList(String url, final String postId){
+    public static void getNewsList(int what, String url, final String postId){
         Request<JSONObject> request = NoHttp.createJsonObjectRequest(url);
         RequestQueue queue = NoHttp.newRequestQueue();
-        queue.add(RequestWhat.GET_NEWS_LIST, request, new WxOnResponseListener<JSONObject>(){
+        queue.add(what, request, new WxOnResponseListener<JSONObject>(){
 
             @Override
             public void onSucceed(int what, Response<JSONObject> response) {
@@ -66,7 +66,11 @@ public class GetNewsList {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    if(what == RequestWhat.GET_LOCAL_NEWS_LIST){
+                        AppUtils.showShortToast("抱歉...所选城市没有新闻数据");
+                    }
                     AppUtils.showShortToast("解析数据失败");
+                    EventBus.getDefault().post(new RefreshNewsListEvent());
                 }
 
             }
@@ -84,12 +88,12 @@ public class GetNewsList {
 
     public static void getCategoryNewsList(String categoryId, int count){
         String url = Config.getCategoryNewsListUrl(categoryId, count);
-        getNewsList(url, categoryId);
+        getNewsList(RequestWhat.GET_CATEGORY_NEWS_LIST, url, categoryId);
     }
 
     public static void getLocalNewsList(String city, int count){
         String url = Config.getLocalNewsListUrl(city, count);
-        getNewsList(url, city);
+        getNewsList(RequestWhat.GET_LOCAL_NEWS_LIST, url, city);
     }
 
     public static void getNewsDetail(final String postId){
