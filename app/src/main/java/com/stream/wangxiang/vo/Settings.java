@@ -11,7 +11,7 @@ import cn.bmob.v3.BmobObject;
 public class Settings extends BmobObject {
     private String username;
 
-    private boolean has_settings;
+    private Boolean has_settings;
 
     private List<Integer> subscribe_category;
 
@@ -25,11 +25,11 @@ public class Settings extends BmobObject {
         this.username = username;
     }
 
-    public boolean isHas_settings() {
+    public Boolean isHas_settings() {
         return has_settings;
     }
 
-    public void setHas_settings(boolean has_settings) {
+    public void setHas_settings(Boolean has_settings) {
         this.has_settings = has_settings;
     }
 

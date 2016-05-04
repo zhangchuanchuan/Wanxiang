@@ -56,7 +56,7 @@ public class MyselfFragment extends BaseFragment implements View.OnClickListener
 
     private void setTextMessage() {
         if(LoginUtils.isLogin){
-            mName.setText(LoginUtils.username+", 您好！");
+            mName.setText(LoginUtils.bmob_user.getUsername()+", 您好！");
             mButton.setText("注销");
         }else{
             mName.setText("您还未登录");
