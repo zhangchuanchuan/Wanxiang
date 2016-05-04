@@ -32,6 +32,8 @@
 
         <activity android:name="com.stream.wangxiang.activity.ChooseAreaActivity"/>
 
+        <activity android:name="com.stream.wangxiang.activity.LoginActivity"/>
+
     </application>
 
 </manifest>
