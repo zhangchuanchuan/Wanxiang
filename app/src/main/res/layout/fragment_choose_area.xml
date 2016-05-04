@@ -55,6 +55,7 @@
         android:paddingBottom="15dp"
         android:paddingTop="15dp"
         android:paddingRight="15dp"
+        android:visibility="gone"
         android:text="北京"
         android:textColor="@color/text_hard_gray_color"
         android:textSize="14dp" />
@@ -64,14 +65,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ListView
+        <com.stream.wangxiang.view.CityListView
             android:background="@color/white"
             android:layout_marginTop="20dp"
             android:id="@+id/city_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </ListView>
+        </com.stream.wangxiang.view.CityListView>
         <com.stream.wangxiang.view.LetterListView
             android:id="@+id/letter_view"
             android:layout_width="30dip"
