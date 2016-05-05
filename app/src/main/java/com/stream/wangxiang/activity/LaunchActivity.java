@@ -33,11 +33,12 @@ public class LaunchActivity extends BaseActivity {
     // 延迟加载的消息类型
     private final int MSG_TYPE_DELAY_START = 0;
 
-    private long start = System.currentTimeMillis();
+    private long start;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        start = System.currentTimeMillis();
         EventBus.getDefault().register(this);
         if(SettingUtils.hasLocalUser()) {
             GetBmobData.getUserList();
@@ -132,10 +133,10 @@ public class LaunchActivity extends BaseActivity {
         Message startMsg = new Message();
         startMsg.what = MSG_TYPE_DELAY_START;
         long delay = System.currentTimeMillis() - start;
-        if(delay > 0) {
-            startHandler.sendMessageDelayed(startMsg, delay);
-        }else{
+        if(delay > 2000) {
             startHandler.sendMessage(startMsg);
+        }else{
+            startHandler.sendMessageDelayed(startMsg, delay);
         }
     }
 

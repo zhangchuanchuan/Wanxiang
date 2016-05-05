@@ -64,6 +64,12 @@ public class GetCategoryList {
 
             }
 
+            @Override
+            public void onFailed(int what, String url, Object tag, Exception exception, int responseCode, long networkMillis) {
+                super.onFailed(what, url, tag, exception, responseCode, networkMillis);
+                EventBus.getDefault().post(new GetCategoryListEvent());
+
+            }
         });
 
     }

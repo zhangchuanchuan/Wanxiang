@@ -48,7 +48,6 @@ public class GetBmobData {
                 GetUserListEvent event = new GetUserListEvent();
                 event.setSucceed(false);
                 EventBus.getDefault().post(event);
-                AppUtils.showShortToast(arg1);
             }
         });
     }
