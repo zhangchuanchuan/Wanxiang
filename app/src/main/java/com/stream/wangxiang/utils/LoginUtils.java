@@ -10,10 +10,11 @@ import com.stream.wangxiang.vo.User;
 public class LoginUtils {
     public static boolean isLogin = false;
 
-
     public static User bmob_user;
 
     public static Settings bmob_settings;
+
+
 
 
 

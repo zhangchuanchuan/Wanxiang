@@ -3,6 +3,9 @@ package com.stream.wangxiang.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.stream.wangxiang.net.SetBmobData;
+import com.stream.wangxiang.vo.Settings;
+
 import java.util.Set;
 
 /**
@@ -15,6 +18,10 @@ public class SharedPreferenceUtils {
 
     public static final String KEY_FOR_LOCAL_CITY = "local_ctiy";
 
+    public static final String KEY_FOR_USER_NAME = "user_name";
+
+    public static final String KEY_FOR_PASS_WORD = "password";
+
     private static SharedPreferences sharedPreferences;
 
     public static synchronized boolean putString(String key, String value){
@@ -23,6 +30,14 @@ public class SharedPreferenceUtils {
         }
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if(LoginUtils.isLogin && key.equals(KEY_FOR_LOCAL_CITY)){
+            if(LoginUtils.bmob_settings != null){
+                LoginUtils.bmob_settings.setLocal_city(value);
+                SetBmobData.updateSetting(LoginUtils.bmob_settings);
+            }
+        }
+
         return editor.putString(key, value).commit();
     }
 
@@ -31,6 +46,12 @@ public class SharedPreferenceUtils {
             sharedPreferences = AppUtils.context.getSharedPreferences("wanxiang_cache", Context.MODE_PRIVATE);
         }
 
+        if(LoginUtils.isLogin && key.equals(KEY_FOR_SUBSCRIBE_CATEGORY)){
+            if(LoginUtils.bmob_settings != null){
+                LoginUtils.bmob_settings.setSubscribe_category(SettingUtils.getSubscribeCategoryList(value));
+                SetBmobData.updateSetting(LoginUtils.bmob_settings);
+            }
+        }
         SharedPreferences.Editor editor = sharedPreferences.edit();
         return editor.putStringSet(key, value).commit();
     }

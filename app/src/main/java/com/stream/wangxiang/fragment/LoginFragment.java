@@ -12,11 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stream.wangxiang.event.BaseEvent;
+import com.stream.wangxiang.event.GetSettingsListEvent;
 import com.stream.wangxiang.event.GetUserListEvent;
+import com.stream.wangxiang.event.LoginSuccessEvent;
+import com.stream.wangxiang.event.RegisterEvent;
 import com.stream.wangxiang.net.GetBmobData;
+import com.stream.wangxiang.net.SetBmobData;
 import com.stream.wangxiang.utils.AppUtils;
 import com.stream.wangxiang.utils.LoginUtils;
+import com.stream.wangxiang.utils.SettingUtils;
+import com.stream.wangxiang.utils.SharedPreferenceUtils;
 import com.stream.wangxiang.utils.StringUtils;
+import com.stream.wangxiang.vo.Settings;
 import com.stream.wangxiang.vo.User;
 import com.stream.wanxiang.R;
 
@@ -26,6 +33,7 @@ import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindCallback;
+import de.greenrobot.event.EventBus;
 
 /**
  * 登录fragment
@@ -46,6 +54,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener{
         backImg.setOnClickListener(this);
 
         etUsername = (EditText) view.findViewById(R.id.et_user_name);
+        etUsername.setText(SharedPreferenceUtils.getString(SharedPreferenceUtils.KEY_FOR_USER_NAME, ""));
+
         etPassword = (EditText) view.findViewById(R.id.et_password);
 
         TextView login = (TextView) view.findViewById(R.id.login_button);
@@ -79,14 +89,26 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener{
         String password = etPassword.getText().toString();
         if(StringUtils.isNullOrEmpty(username) || StringUtils.isNullOrEmpty(password)){
             AppUtils.showShortToast("用户名或密码没有填写哦");
+            return;
         }
-
+        setOnBusy(true, false);
         GetBmobData.getUserList();
 
     }
 
 
     private void doRegister() {
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
+        if(StringUtils.isNullOrEmpty(username) || StringUtils.isNullOrEmpty(password)){
+            AppUtils.showShortToast("用户名或密码没有填写哦");
+            return;
+        }
+        setOnBusy(true, false);
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        SetBmobData.saveUser(user);
 
     }
 
@@ -99,19 +121,73 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener{
                     LoginUtils.isLogin = true;
                     LoginUtils.bmob_user = user;
 
-                    return;
+                    // 保存到本地，用作自动登录
+                    SettingUtils.saveUserToLocal(user.getUsername(), user.getPassword());
+
+                    GetBmobData.getSettingList();
+                    break;
                 }
             }
 
-            if(LoginUtils.isLogin){
-
-                getActivity().finish();
+            if(!LoginUtils.isLogin){
+                setOnBusy(false);
+                AppUtils.showShortToast("用户名或密码错误");
             }
 
+        }else{
+            setOnBusy(false);
+        }
+    }
+
+    public void onEventMainThread(GetSettingsListEvent event){
+        setOnBusy(false);
+        List<Settings> settingsList =  event.getSettingsList();
+        for(Settings setting : settingsList){
+            // 存在设置
+            if(setting.getUsername().equals(LoginUtils.bmob_user.getUsername())){
+                // 导入设置
+                SettingUtils.loadBmobSetting(setting);
+                LoginUtils.bmob_settings = setting;
+                break;
+            }
+        }
+
+        if(LoginUtils.bmob_settings == null){
+            // 保存设置到bmob
+            Settings settings = new Settings();
+            settings.setUsername(LoginUtils.bmob_user.getUsername());
+            settings.setLocal_city(SharedPreferenceUtils.getString(SharedPreferenceUtils.KEY_FOR_LOCAL_CITY, SettingUtils.defaultCity));
+            settings.setSubscribe_category(SettingUtils.getSubscribeCategoryList());
+            SetBmobData.saveSettings(settings);
+        }
+
+        // 登录成功
+        AppUtils.showShortToast("登录成功");
+        EventBus.getDefault().post(new LoginSuccessEvent());
+        getActivity().finish();
+
+    }
+
+    public void onEventMainThread(RegisterEvent event){
+        setOnBusy(false);
+        if(event.isSucceed()){
+            AppUtils.showShortToast("注册成功，正在登录...");
+            doLogin();
+        }else{
+            AppUtils.showShortToast("用户名已存在");
         }
     }
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }
